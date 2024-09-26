@@ -1,10 +1,10 @@
 {
     "name": "madj2k/t3-forminator",
     "type": "typo3-cms-extension",
-    "description": "Utilities and improvements for extension typo3/cms-form",
+    "description": "This extension comes with several additional validators, finishers, formElements and general improvements for the usage of the typo3/cms-form-extension, e.g. improved ConfirmationMessage- and Email-Finisher, checkboxes with link-able labels for GDPR or terms & conditions, improved email-validation, validator for phone-numbers, ViewHelper for well formated plaintext-emails.",
     "homepage": "https://www.steffenkroggel.de",
     "license": ["GPL-2.0+"],
-    "keywords": ["TYPO3 CMS", "Form", "Double-Opt-In", "DOI"],
+    "keywords": ["TYPO3 CMS", "Form", "GDPR", "Validation", "Validator", "Double-Opt-In", "DOI"],
     "support": {
         "email": "developer@steffenkroggel.de"
     },
