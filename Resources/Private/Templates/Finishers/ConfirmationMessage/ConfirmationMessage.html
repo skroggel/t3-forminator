@@ -1,0 +1,24 @@
+<html
+	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	data-namespace-typo3-fluid="true">
+
+	<div class="container">
+        <f:if condition="{header}">
+            <h3>
+                {header -> f:format.htmlentitiesDecode()}
+            </h3>
+        </f:if>
+
+        <f:if condition="{message}">
+            {message -> f:format.html()}
+        </f:if>
+
+        <f:if condition="{link} && {linkText}">
+            <div class="button-wrapper mt-2">
+                <f:link.typolink parameter="{link}" class="link">
+                    {linkText}
+                </f:link.typolink>
+            </div>
+        </f:if>
+	</div>
+</html>

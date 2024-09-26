@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+	<f:comment><!--
+	    This is used for feedback on e.g. sending recovery link
+	    Usage:
+            <f:render partial="Messages/FlashMessage" arguments="{_all}"/>
+
+	--></f:comment>
+	<f:flashMessages as="flashMessages">
+		<f:if condition="{flashMessages}">
+			<div class="row">
+				<div class="col-12">
+					<div class="alerts" role="alert">
+						<f:for each="{flashMessages}" as="flashMessage">
+
+							<f:switch expression="{flashMessage.severity.value}">
+								<f:case value="-2"><f:variable name="status" value="dark" /></f:case>
+								<f:case value="-1"><f:variable name="status" value="info" /></f:case>
+								<f:case value="0"><f:variable name="status" value="success" /></f:case>
+								<f:case value="1"><f:variable name="status" value="warning" /></f:case>
+								<f:case value="2"><f:variable name="status" value="danger" /></f:case>
+							</f:switch>
+
+							<p class="alert alert-{status}">
+								<f:if condition="{flashMessage.title}"><span class="alert-title">{flashMessage.title}</span></f:if>
+								<span class="alert-message"><f:format.raw>{flashMessage.message}</f:format.raw></span>
+							</p>
+						</f:for>
+					</div>
+				</div>
+			</div>
+		</f:if>
+	</f:flashMessages>
+</html>

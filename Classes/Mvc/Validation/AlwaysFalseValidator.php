@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Madj2k\Forminator\Validation;
+namespace Madj2k\Forminator\Mvc\Validation;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -15,17 +15,17 @@ namespace Madj2k\Forminator\Validation;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 
 /**
- * Class BetterEmailAddressValidator
+ * Class AlwaysFalseValidator
  *
  * @author Steffen Kroggel <developer@steffenkroggel.de>
+ * @copyright Steffen Kroggel <developer@steffenkroggel.de>
  * @package Madj2k\Forminator
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-final class BetterEmailAddressValidator extends AbstractValidator
+class AlwaysFalseValidator extends AbstractValidator
 {
 
 	/**
@@ -38,23 +38,19 @@ final class BetterEmailAddressValidator extends AbstractValidator
 	];
 
 
-    /**
-     * Check for valid email
-     */
-    public function isValid(mixed $value): void
-    {
-		// core method seems to have a bug that does not check for FQDN (since TYPO3 v10), so we double-check
-		if (
-			(! GeneralUtility::validEmail($value)
-			|| (! filter_var($value, FILTER_VALIDATE_EMAIL)))
-		) {
-			$this->addError(
-				$this->translateErrorMessage(
-					'validation.error.1221559976',
-					'form'
-				),
-				1221559976
-			);
-		}
-    }
+	/**
+	 * Always false
+	 *
+	 * @param mixed $value
+	 * @return void
+	 */
+	public function isValid(mixed $value): void
+	{
+		$this->addError(
+			$this->translateErrorMessage(
+				'validation.error.1723889046',
+				'form'
+			),
+			1723889046
+		);	}
 }

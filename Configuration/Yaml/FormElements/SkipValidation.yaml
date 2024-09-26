@@ -1,0 +1,15 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            SkipValidation:
+              __inheritances:
+                10: "TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Hidden"
+              # Prevent successful submission on change
+              variants:
+                - identifier: skip-validation
+                  condition: 'traverse(formValues, "skip-validation") == 1'
+                  validators:
+                    - identifier: AlwaysFalse

@@ -1,0 +1,34 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+	<f:comment><!--
+	    This is used as feedback on failed login OR to display a message above the form
+        Usage:
+            <f:render partial="Messages/DefaultMessage" arguments="{status: '{messageKey}', key: '{messageKey}_message'}"/>
+
+    --></f:comment>
+	<f:if condition="{key}">
+		<f:switch expression="{status}">
+			<f:case value="error">
+				<f:variable name="messageStatusClass" value="alert alert-danger" />
+			</f:case>
+			<f:case value="logout">
+				<f:variable name="messageStatusClass" value="alert alert-success" />
+			</f:case>
+			<f:case value="success">
+				<f:variable name="messageStatusClass" value="alert alert-success" />
+			</f:case>
+			<f:defaultCase>
+				<f:variable name="messageStatusClass" value="message" />
+			</f:defaultCase>
+		</f:switch>
+
+		<div class="row">
+			<div class="col-12">
+				<p class="{messageStatusClass}" role="alert">
+					<f:render partial="RenderLabelOrMessage" arguments="{key: '{key}', arguments: arguments}"/>
+				</p>
+			</div>
+		</div>
+	</f:if>
+</html>

@@ -1,0 +1,9 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            ConsentContainer:
+              __inheritances:
+                10: "TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Fieldset"

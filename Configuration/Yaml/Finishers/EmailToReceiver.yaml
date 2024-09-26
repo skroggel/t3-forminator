@@ -1,0 +1,32 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          finishersDefinition:
+            EmailToReceiver:
+              implementationClassName: Madj2k\Forminator\Domain\Finishers\EmailFinisher
+              options:
+                templateRootPaths:
+                  20: "EXT:forminator/Resources/Private/Templates/Finishers/Email"
+                partialRootPaths:
+                  20: "EXT:forminator/Resources/Private/Partials/Finishers/Email"
+                addHtmlPart: true
+                useFluidEmail: true
+                translation:
+                  language: 'de'
+                assignOptions:
+                  - message
+              FormEngine:
+                elements:
+                  message:
+                    label: tt_content.finishersDefinition.EmailFinisher.message.label
+                    config:
+                      type: text
+                      enableRichtext: true
+                  translation:
+                    language:
+                      config:
+                        items:
+                          10:
+                            value: de

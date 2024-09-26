@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext">
+		<header />
+		<body>
+			<trans-unit id="element.consent-privacy.properties.text">
+				<source>By submitting the form, you consent to the processing and use of your data in accordance with the #privacyPolicy# and our #termsAndConditions#.</source>
+			</trans-unit>
+			<trans-unit id="element.consent-privacy.properties.privacyPolicyLinkText">
+				<source>privacy policy</source>
+			</trans-unit>
+			<trans-unit id="element.consent-privacy.properties.termsAndConditionsLinkText">
+				<source>terms and conditions</source>
+			</trans-unit>
+			<trans-unit id="element.consent-privacy.properties.label">
+				<source>I accept the #privacyPolicy#</source>
+			</trans-unit>
+			<trans-unit id="element.consent-privacy.properties.privacyPolicyLinkTextLabel">
+				<source>privacy policy</source>
+			</trans-unit>
+
+			<trans-unit id="validation.error.1221559976" xml:space="preserve">
+				<source>Please enter a valid e-mail address.</source>
+			</trans-unit>
+			<trans-unit id="validation.error.1724504891" xml:space="preserve">
+				<source>Please enter a valid telephone number. Numbers and slashes are permitted.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

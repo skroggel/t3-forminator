@@ -1,0 +1,33 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+    <f:comment><!--
+        Usages the texts set in BE or the default texts for fe_login
+        The default-texts can be overridden using e.g. "overrides.welcome_header" or "overrides.welcome_message" in
+        the translation-file of your extension.
+        Possible keys for your translations are:
+            overrides.[welcome|error|logout|forgot_reset|change_password|status]_[message|header]
+
+        Usage:
+            <f:render partial="RenderLabelOrMessage" arguments="{key: '{messageKey}_header', extensionName: 'yourExtension'}"/>
+    --></f:comment>
+    <f:spaceless>
+        <f:if condition="{settings.{key}}">
+            <f:then>
+                {settings.{key}}
+            </f:then>
+            <f:else>
+                <f:comment><!-- check if we have a custom translation - else use default --></f:comment>
+                <f:variable name="localTranslation" value="{f:translate(key:'overrides.{key}', extensionName: extensionName, arguments: arguments)}" />
+                <f:if condition="{localTranslation}">
+                    <f:then>
+                        {localTranslation}
+                    </f:then>
+                    <f:else>
+                        <f:translate key="{key}" arguments="{arguments}" />
+                    </f:else>
+                </f:if>
+            </f:else>
+        </f:if>
+    </f:spaceless>
+</html>

@@ -1,0 +1,12 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            # Prevent loading of default email-validator
+            TextEmail:
+              __inheritances:
+                10: "TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Text"
+              renderingOptions:
+                templateName: Email

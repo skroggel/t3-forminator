@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext">
+		<header />
+		<body>
+
+			<!-- flexform -->
+			<trans-unit id="flexForm.tab.loginRegister.title">
+				<source>Registration</source>
+			</trans-unit>
+			<trans-unit id="flexForm.tab.approve.title">
+				<source>Approval</source>
+			</trans-unit>
+			<trans-unit id="flexForm.tab.dismiss.title">
+				<source>Dismiss</source>
+			</trans-unit>
+			<trans-unit id="flexForm.tab.error.title">
+				<source>Error</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.registrationPid">
+				<source>Page with Registration</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.header">
+				<source>Headline</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.subheader">
+				<source>Sub-Headline</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.text">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.link">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.linkLabel">
+				<source>Link-Label</source>
+			</trans-unit>
+
+
+			<!-- Form-Finishers -->
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.label">
+				<source>Confirmation Message</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.header.label">
+				<source>Header</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.message.label">
+				<source>Message</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.linkText.label">
+				<source>Link Text</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.link.label">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.Form.finisher.EncryptPassword.editor.header.label">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.EncryptPassword.label">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.EncryptPassword.mode.label">
+				<source>Encryption context</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.EncryptPassword.mode.FE.label">
+				<source>Frontend</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.EncryptPassword.mode.BE.label">
+				<source>Backend</source>
+			</trans-unit>
+			<trans-unit id="formEditor.elements.Form.finisher.SaveFeUserToDatabase.editor.header.label">
+				<source>Save FE-User</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.SaveFeUserToDatabase.label">
+				<source>Save FE-User</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.SaveFeUserToDatabase.storagePid.label">
+				<source>Storage location for data records</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

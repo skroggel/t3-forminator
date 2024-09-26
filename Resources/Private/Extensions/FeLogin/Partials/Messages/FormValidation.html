@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
+
+    <f:comment><!--
+	    This is used for validation on password change or if password-reset-link is no longer valid
+	    Usage:
+            <f:render partial="Messages/FormValidation" arguments="{_all}"/>
+
+	--></f:comment>
+	<f:form.validationResults>
+		<f:if condition="{validationResults.flattenedErrors}">
+			<div class="row">
+				<div class="col-12">
+					<div class="alerts" role="alert">
+						<p class="alert alert-danger">
+							<f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+								<f:for each="{errors}" as="error">
+									<span class="alert-message"><f:format.trim characters=".">{error}</f:format.trim>.<br></span>
+								</f:for>
+							</f:for>
+						</p>
+					</div>
+				</div>
+			</div>
+		</f:if>
+	</f:form.validationResults>
+
+</html>

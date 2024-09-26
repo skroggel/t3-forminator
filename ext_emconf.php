@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = [
 	'title' => 'Forminator',
-	'description' => 'Utilities and improvements for extension typo3/cms-form',
+	'description' => 'This extension comes with several additional validators, finishers, formElements and general improvements for the usage of the typo3/cms-form-extension, e.g. improved ConfirmationMessage- and Email-Finisher, checkboxes with link-able labels for GDPR or terms & conditions, improved email-validation, validator for phone-numbers, ViewHelper for well formated plaintext-emails.',
 	'category' => 'plugin',
 	'author' => 'Steffen Kroggel',
 	'author_email' => 'developer@steffenkroggel.de',
@@ -23,11 +23,12 @@ $EM_CONF[$_EXTKEY] = [
 	'version' => '12.4.0',
 	'constraints' => [
 		'depends' => [
-            'typo3' => '12.4.99',
+            'typo3' => '10.4.99-12.4.99',
         ],
 		'conflicts' => [
 		],
 		'suggests' => [
+            'form_consent' => '2.2.0-2.2.99'
         ],
 	],
 ];
