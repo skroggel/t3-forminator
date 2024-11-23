@@ -28,23 +28,6 @@ plugin.tx_forminator {
 	}
 }
 
-// ======================================================================================
-plugin.tx_form {
-
-    settings {
-        yamlConfigurations {
-            1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
-        }
-    }
-}
-
-module.tx_form {
-    settings {
-        yamlConfigurations {
-            1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
-        }
-    }
-}
 
 // ======================================================================================
 plugin.tx_formconsent {
