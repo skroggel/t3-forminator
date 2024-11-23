@@ -25,7 +25,7 @@ use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
  * @package Madj2k\Forminator
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class ConfirmationMessageFinisher extends AbstractConfirmationMessageFinisher
+class ConfirmationMessageFinisher extends \TYPO3\CMS\Form\Domain\Finishers\ConfirmationFinisher
 {
 
     /**

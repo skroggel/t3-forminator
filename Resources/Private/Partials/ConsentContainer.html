@@ -7,7 +7,7 @@
 	<formvh:renderRenderable renderable="{element}">
         <fieldset id="{element.uniqueIdentifier}" class="form-group{f:if(condition: element.properties.elementClassAttribute, then: ' {element.properties.elementClassAttribute}')}">
 
-            <f:variabel name="label" value="{formvh:translateElementProperty(element: element, property: 'label')}" />
+            <f:variable name="label" value="{formvh:translateElementProperty(element: element, property: 'label')}" />
             <f:if condition="{label}">
                 <legend>{label}</legend>
             </f:if>

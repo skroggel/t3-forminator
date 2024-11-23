@@ -23,9 +23,21 @@ TYPO3:
     Form:
       persistenceManager:
         allowedExtensionPaths:
-          1727248952: EXT:forminator/Resources/Private/Forms/
+          1727248952: "EXT:forminator/Resources/Private/Forms/"
       prototypes:
         standard:
           formEngine:
             translationFiles:
               1727248952: "EXT:forminator/Resources/Private/Language/locallang_be.xlf"
+          formElementsDefinition:
+            Form:
+              renderingOptions:
+                translation:
+                  translationFiles:
+                    1727248952: "EXT:forminator/Resources/Private/Language/locallang.xlf"
+                templateRootPaths:
+                  1727248952: "EXT:forminator/Resources/Private/Templates/"
+                partialRootPaths:
+                  1727248952: "EXT:forminator/Resources/Private/Partials/"
+                fluidAdditionalAttributes:
+                  novalidate: "novalidate"

@@ -36,7 +36,10 @@ call_user_func(
             'module.tx_form {
                 settings {
                     yamlConfigurations {
+<<<<<<< Updated upstream
                         10 = EXT:form/Configuration/Yaml/FormSetup.yaml
+=======
+>>>>>>> Stashed changes
                         1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
                     }
                 }
@@ -44,7 +47,10 @@ call_user_func(
             plugin.tx_form {
                 settings {
                     yamlConfigurations {
+<<<<<<< Updated upstream
                         10 = EXT:form/Configuration/Yaml/FormSetup.yaml
+=======
+>>>>>>> Stashed changes
                         1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
                     }
                 }

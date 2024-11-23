@@ -28,7 +28,12 @@ plugin.tx_forminator {
 	}
 }
 
+<<<<<<< Updated upstream
 
+=======
+// ====================================================
+// Add configuration for forms
+>>>>>>> Stashed changes
 // ======================================================================================
 plugin.tx_formconsent {
 	view {
