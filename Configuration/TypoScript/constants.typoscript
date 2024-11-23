@@ -1,0 +1,23 @@
+plugin.tx_forminator {
+
+	view {
+		# cat=plugin.tx_forminator/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:forminator/Resources/Private/Templates/
+
+		# cat=plugin.tx_forminator/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:forminator/Resources/Private/Partials/
+
+		# cat=plugin.tx_forminator/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:forminator/Resources/Private/Layouts/
+	}
+
+	persistence {
+		# cat=plugin.tx_forminator//a; type=string; label=Default storage PID
+		storagePid =
+	}
+
+	settings {
+
+
+	}
+}

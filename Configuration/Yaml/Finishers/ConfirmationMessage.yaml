@@ -1,0 +1,37 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          finishersDefinition:
+            ConfirmationMessage:
+              implementationClassName: Madj2k\Forminator\Domain\Finishers\ConfirmationMessageFinisher
+              options:
+                templateName: ConfirmationMessage
+                templateRootPaths:
+                  10: "EXT:forminator/Resources/Private/Templates/Finishers/ConfirmationMessage/"
+                assignOptions:
+                  - message
+                  - header
+                  - linkText
+                  - link
+              FormEngine:
+                label: tt_content.finishersDefinition.ConfirmationMessage.label
+                elements:
+                  header:
+                    label: tt_content.finishersDefinition.ConfirmationMessage.header.label
+                    config:
+                      type: input
+                  message:
+                    label: tt_content.finishersDefinition.ConfirmationMessage.message.label
+                    config:
+                      type: text
+                      enableRichtext: true
+                  linkText:
+                    label: tt_content.finishersDefinition.ConfirmationMessage.linkText.label
+                    config:
+                      type: input
+                  link:
+                    label: tt_content.finishersDefinition.ConfirmationMessage.link.label
+                    config:
+                      type: link

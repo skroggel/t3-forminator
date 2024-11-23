@@ -1,0 +1,18 @@
+routeEnhancers:
+  formConsent:
+    type: Extbase
+    namespace: 'tx_formconsent_consent'
+    routes:
+      - routePath: '/consent/approve/{hash}'
+        _controller: 'Consent::approve'
+      - routePath: '/consent/dismiss/{hash}'
+        _controller: 'Consent::dismiss'
+      - routePath: '/consent/approve/{hash}/{email}/{verify}'
+        _controller: 'Consent::approve'
+      - routePath: '/consent/dismiss/{hash}/{email}}/{verify}'
+        _controller: 'Consent::dismiss'
+    defaultController: 'Consent::approve'
+    requirements:
+      hash: '[0-9a-z]+'
+      email: '[a-zA-Z0-9\-_@\.]+'
+      verify: '[0,1]{1}'

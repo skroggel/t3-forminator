@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext">
+		<header />
+		<body>
+			<trans-unit id="validation.error.1221559976" xml:space="preserve">
+				<source>Please enter a valid e-mail address.</source>
+				<target>Bitte geben Sie eine gültige E-Mailadresse ein.</target>
+			</trans-unit>
+			<trans-unit id="validation.error.1724504891" xml:space="preserve">
+				<source>Please enter a valid telephone number. Numbers and slashes are permitted.</source>
+				<target>Bitte geben Sie eine gültige Telefonnummer ein. Erlaubt sind Zahlen und Schrägstriche.</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

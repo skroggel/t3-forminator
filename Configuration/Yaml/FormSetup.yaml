@@ -1,0 +1,29 @@
+imports:
+  - { resource: "./Validators/AlwaysFalse.yaml" }
+  - { resource: "./Validators/BetterEmailAddress.yaml" }
+  - { resource: "./Validators/Phone.yaml" }
+
+  - { resource: "./FormElements/ConsentCheckbox.yaml" }
+  - { resource: "./FormElements/ConsentContainer.yaml" }
+  - { resource: "./FormElements/Hcaptcha.yaml" }
+  - { resource: "./FormElements/MultiSelect.yaml" }
+  - { resource: "./FormElements/Page.yaml" }
+  - { resource: "./FormElements/SingleSelect.yaml" }
+  - { resource: "./FormElements/SkipValidation.yaml" }
+  - { resource: "./FormElements/TextEmail.yaml" }
+
+  - { resource: "./Finishers/ConfirmationMessage.yaml" }
+  - { resource: "./Finishers/EmailToReceiver.yaml" }
+  - { resource: "./Finishers/EmailToSender.yaml" }
+
+TYPO3:
+  CMS:
+    Form:
+      persistenceManager:
+        allowedExtensionPaths:
+          1727248952: EXT:forminator/Resources/Private/Forms/
+      prototypes:
+        standard:
+          formEngine:
+            translationFiles:
+              1727248952: "EXT:forminator/Resources/Private/Language/locallang_be.xlf"

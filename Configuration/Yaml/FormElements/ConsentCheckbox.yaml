@@ -1,0 +1,18 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            ConsentCheckbox:
+              __inheritances:
+                10: "TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Checkbox"
+              properties:
+                label: 'Privacy Policy / Terms & Conditions'
+                text: 'By submitting the form, you consent to the processing and use of your data in accordance with the #privacyPolicy# and our #termsAndConditions#.'
+                privacyPolicyPid: 1
+                termsAndConditionsPid: 1
+                privacyPolicyLinkText: 'privacy policy'                   # used in long text above
+                termsAndConditionsLinkText: 'terms and conditions'        # used in long text above
+                privacyPolicyLinkTextLabel: 'privacy policy'              # used in label of checkbox
+                termsAndConditionsLinkTextLabel: 'terms and conditions'   # used in label of checkbox

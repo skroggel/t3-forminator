@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext">
+		<header />
+		<body>
+
+			<!-- flexform -->
+			<trans-unit id="flexForm.tab.loginRegister.title">
+				<source>Registration</source>
+			</trans-unit>
+			<trans-unit id="flexForm.tab.approve.title">
+				<source>Approval</source>
+			</trans-unit>
+			<trans-unit id="flexForm.tab.dismiss.title">
+				<source>Dismiss</source>
+			</trans-unit>
+			<trans-unit id="flexForm.tab.error.title">
+				<source>Error</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.registrationPid">
+				<source>Page with Registration</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.header">
+				<source>Headline</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.subheader">
+				<source>Sub-Headline</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.text">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.link">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.linkLabel">
+				<source>Link-Label</source>
+			</trans-unit>
+
+
+			<!-- Form-Finishers -->
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.label">
+				<source>Confirmation Message</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.header.label">
+				<source>Header</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.message.label">
+				<source>Message</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.linkText.label">
+				<source>Link Text</source>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.link.label">
+				<source>Link</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

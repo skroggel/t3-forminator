@@ -1,0 +1,59 @@
+plugin.tx_forminator {
+
+	view {
+		layoutRootPaths {
+			0 = EXT:forminator/Resources/Private/Layouts/
+			10 = {$plugin.tx_forminator.view.layoutRootPath}
+		}
+		templateRootPaths {
+			0 = EXT:forminator/Resources/Private/Templates/
+            10 = {$plugin.tx_forminator.view.templateRootPath}
+        }
+		partialRootPaths {
+			0 = EXT:forminator/Resources/Private/Partials/
+			10 = {$plugin.tx_forminator.view.partialRootPath}
+        }
+	}
+
+	persistence {
+		storagePid = {$plugin.tx_forminator.persistence.storagePid}
+
+		# In order to make the manual selection in BE work, we need to completely remove this setting here
+		# storagePid >
+	}
+
+	settings {
+
+
+	}
+}
+
+// ======================================================================================
+plugin.tx_form {
+
+    settings {
+        yamlConfigurations {
+            1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
+        }
+    }
+}
+
+module.tx_form {
+    settings {
+        yamlConfigurations {
+            1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
+        }
+    }
+}
+
+// ======================================================================================
+plugin.tx_formconsent {
+	view {
+    	templateRootPaths {
+    		1727248952 = EXT:forminator/Resources/Private/Extensions/OptIn/Templates/
+    	}
+    	partialRootPaths {
+    		1727248952 = EXT:forminator/Resources/Private/Extensions/OptIn/Partials
+    	}
+  	}
+}

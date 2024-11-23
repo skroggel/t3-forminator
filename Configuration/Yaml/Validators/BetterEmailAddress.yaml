@@ -1,0 +1,8 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          validatorsDefinition:
+            BetterEmailAddress:
+              implementationClassName: Madj2k\Forminator\Mvc\Validation\BetterEmailAddressValidator

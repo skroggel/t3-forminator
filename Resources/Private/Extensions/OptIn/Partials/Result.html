@@ -1,0 +1,29 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+	<f:variable name="messageType"><f:if condition="{error}"><f:then>error</f:then><f:else>{type}</f:else></f:if></f:variable>
+	<div class="container">
+        <f:if condition="{settings.{messageType}.header}">
+            <h2>{settings.{messageType}.header -> f:format.raw()}</h2>
+        </f:if>
+
+        <f:if condition="{settings.{messageType}.subheader}">
+            <h2>{settings.{messageType}.subheader -> f:format.raw()}</h2>
+        </f:if>
+
+        <f:if condition="{error}">
+            <f:render partial="Error/{type -> f:format.case(mode:'capital')}" arguments="{reason: reason, exception: exception}" />
+        </f:if>
+
+        <f:if condition="{settings.{messageType}.text}">
+            <p>
+                <f:format.nl2br>{settings.{messageType}.text -> f:format.raw()}</f:format.nl2br>
+            </p>
+        </f:if>
+        <f:if condition="{settings.{messageType}.link}">
+            <p>
+                <f:link.page pageUid="{settings.{messageType}.link}" class="btn">{settings.{messageType}.linkLabel}</f:link.page>
+            </p>
+        </f:if>
+	</div>
+</html>

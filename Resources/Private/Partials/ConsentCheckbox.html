@@ -1,0 +1,49 @@
+<html
+	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+	xmlns:forminator="http://typo3.org/ns/Madj2k/Forminator/ViewHelpers"
+	data-namespace-typo3-fluid="true"
+>
+	<f:form.validationResults for="{element.rootForm.identifier}.{element.identifier}" >
+		<formvh:renderRenderable renderable="{element}">
+            <f:render partial="Field/Field" arguments="{element: element, doNotShowLabel: 1}" contentAs="elementContent">
+
+                <div class="{element.properties.wrapClassAttribute}">
+                    <f:variable name="text" value="{formvh:translateElementProperty(element: element, property: 'text')}" />
+                    <f:if condition="{text}">
+                        <p>
+                            <f:render
+                                partial="Text/Consent"
+                                arguments="{element: element,  type: '', text: text}" />
+                        </p>
+                    </f:if>
+
+                    <div class="form-check">
+                        <label class="form-check-label{element.properties.elementClassAttribute}{f:if(condition:'{validationResults.errors.0}
+									&& !{forminator:skipValidation(formElement: element)}', then: ' has-error')}" for="{element.uniqueIdentifier}">
+                            <f:form.checkbox
+                                property="{element.identifier}"
+                                id="{element.uniqueIdentifier}"
+                                class="{element.properties.elementClassAttribute}"
+                                value="{element.properties.value}"
+                                errorClass="{f:if(condition:'!{forminator:skipValidation(formElement: element)}', then: element.properties.elementErrorClassAttribute)}"
+                                additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
+                            />
+
+                            <span>
+                                <f:format.raw><f:format.trim>
+                                    <f:variable name="text" value="{formvh:translateElementProperty(element: element, property: 'label')}" />
+                                    <f:render
+                                        partial="ConsentCheckbox/Label"
+                                        arguments="{element: element,
+                                                type: 'Label',
+                                                text: text}" />
+                                </f:format.trim></f:format.raw><f:if condition="{element.required}"><f:render partial="Field/Required"/></f:if>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </f:render>
+		</formvh:renderRenderable>
+	</f:form.validationResults>
+</html>

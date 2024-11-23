@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext">
+		<header />
+		<body>
+
+			<!-- flexform -->
+			<trans-unit id="flexForm.tab.loginRegister.title">
+				<source>Registration</source>
+				<target>Registrierung</target>
+			</trans-unit>
+			<trans-unit id="flexForm.tab.approve.title">
+				<source>Approval</source>
+				<target>Zustimmung</target>
+			</trans-unit>
+			<trans-unit id="flexForm.tab.dismiss.title">
+				<source>Dismiss</source>
+				<target>Ablehnung</target>
+			</trans-unit>
+			<trans-unit id="flexForm.tab.error.title">
+				<source>Error</source>
+				<target>Fehler</target>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.registrationPid">
+				<source>Page with Registration</source>
+				<target>Seite mit Registrierung</target>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.header">
+				<source>Headline</source>
+				<target>Überschrift (Pflichtfeld)</target>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.subheader">
+				<source>Sub-Headline</source>
+				<target>Unter-Überschrift</target>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.text">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.link">
+				<source>Link</source>
+				<target>Link</target>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.linkLabel">
+				<source>Link-Label</source>
+				<target>Link-Beschriftung</target>
+			</trans-unit>
+
+
+			<!-- Form-Finishers -->
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.label">
+				<source>Confirmation Message</source>
+				<target>Bestätigungsmeldung</target>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.header.label">
+				<source>Header</source>
+				<target>Überschrift</target>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.message.label">
+				<source>Message</source>
+				<target>Nachricht</target>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.linkText.label">
+				<source>Link Text</source>
+				<target>Link Text</target>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.ConfirmationMessage.link.label">
+				<source>Link</source>
+				<target>Link</target>
+			</trans-unit>
+			<trans-unit id="tt_content.finishersDefinition.EmailFinisher.message.label">
+				<source>Message</source>
+				<target>Nachricht</target>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

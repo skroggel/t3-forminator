@@ -1,0 +1,15 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+	  data-namespace-typo3-fluid="true"
+>
+	<formvh:renderRenderable renderable="{element}">
+		<f:form.hidden
+			property="{element.identifier}"
+			value="0"
+			respectSubmittedDataValue="0"
+			id="{element.uniqueIdentifier}"
+			class="js-forminator-skip-validation{f:if(condition: element.properties.elementClassAttribute, then: ' {element.properties.elementClassAttribute}')}"
+			additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
+		/>
+	</formvh:renderRenderable>
+</html>
