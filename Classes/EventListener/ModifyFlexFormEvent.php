@@ -17,6 +17,7 @@ namespace Madj2k\Forminator\EventListener;
 
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class ModifyFlexFormEvent
@@ -59,8 +60,7 @@ class ModifyFlexFormEvent
 	{
 		$dataStructure = $event->getDataStructure();
 		$identifier = $event->getIdentifier();
-
-		$event->setDataStructure($this->addFlexForms($dataStructure, $identifier));
+		$event->setDataStructure($this->addFlexForms($identifier, $dataStructure));
 	}
 
 
@@ -74,7 +74,7 @@ class ModifyFlexFormEvent
      */
     public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
     {
-        return $this->addFlexForms($dataStructure, $identifier);
+        return $this->addFlexForms($identifier, $dataStructure);
     }
 
 
@@ -85,6 +85,7 @@ class ModifyFlexFormEvent
      */
     protected function addFlexForms(array $identifier, array $dataStructure): array
     {
+
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content') {
 
             // got through extend-settings

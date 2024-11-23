@@ -5,12 +5,14 @@ imports:
 
   - { resource: "./FormElements/ConsentCheckbox.yaml" }
   - { resource: "./FormElements/ConsentContainer.yaml" }
-  - { resource: "./FormElements/Hcaptcha.yaml" }
+  # - { resource: "./FormElements/Hcaptcha.yaml" }
   - { resource: "./FormElements/MultiSelect.yaml" }
   - { resource: "./FormElements/Page.yaml" }
+  - { resource: "./FormElements/Salutation.yaml" }
   - { resource: "./FormElements/SingleSelect.yaml" }
   - { resource: "./FormElements/SkipValidation.yaml" }
   - { resource: "./FormElements/TextEmail.yaml" }
+  - { resource: "./FormElements/Title.yaml" }
 
   - { resource: "./Finishers/ConfirmationMessage.yaml" }
   - { resource: "./Finishers/EmailToReceiver.yaml" }

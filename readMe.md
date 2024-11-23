@@ -98,8 +98,18 @@ Translations:
 
 ## Hcaptcha
 Customized configuration for the use of dreistromland/typo3-hcaptcha together with the extension eliashaeussler/typo3-form-consent
+The configruation has to be imported separately, because it is optional. Just include this snippet in your configuration:
+```
+imports:
+  - { resource: "EXT:forminator/Configuration/Yaml/FormElements/Hcaptcha.yaml" }
+```
 
 see: [/Configuration/Yaml/FormElements/Hcaptcha.yaml]()
+
+## Salutation
+A ready to use select field with typical salutations.
+
+see: [/Configuration/Yaml/FormElements/Salutation.yaml]()
 
 ## SingleSelect / MultiSelect
 Customized configuration for the use of select form elements with the jQuery framework select2
@@ -129,6 +139,11 @@ options:
 This form element can be used to add an email field without the standard validation. This allows the use of the BetterEmailAddressValidator integrated here
 
 see: [/Configuration/Yaml/FormElements/TextEmail.yaml]()
+
+## Title
+A ready to use select field with typical titles.
+
+see: [/Configuration/Yaml/FormElements/Title.yaml]()
 
 # ViewHelpers
 ## Email/PlaintextLineBreaksViewHelper
