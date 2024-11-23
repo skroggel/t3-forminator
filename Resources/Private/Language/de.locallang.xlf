@@ -4,26 +4,50 @@
 		<header />
 		<body>
 
-			<trans-unit id="element.consent-privacy.properties.text">
+			<trans-unit id="element.ConsentCheckbox.properties.text">
 				<source>By submitting the form, you consent to the processing and use of your data in accordance with the #privacyPolicy# and our #termsAndConditions#.</source>
 				<target>Mit der Formularübermittlung stimmen Sie der Verarbeitung und Nutzung Ihrer Daten gemäß der #privacyPolicy# und der #termsAndConditions# zu.</target>
 			</trans-unit>
-			<trans-unit id="element.consent-privacy.properties.privacyPolicyLinkText">
+			<trans-unit id="element.ConsentCheckbox.properties.privacyPolicyLinkText">
 				<source>privacy policy</source>
 				<target>Datenschutzerklärung</target>
 			</trans-unit>
-			<trans-unit id="element.consent-privacy.properties.termsAndConditionsLinkText">
+			<trans-unit id="element.ConsentCheckbox.properties.termsAndConditionsLinkText">
 				<source>terms and conditions</source>
 				<target>AGB</target>
 			</trans-unit>
-			<trans-unit id="element.consent-privacy.properties.label">
+			<trans-unit id="element.ConsentCheckbox.properties.label">
 				<source>I accept the #privacyPolicy#</source>
 				<target>Ich akzeptiere die #privacyPolicy#</target>
 			</trans-unit>
-			<trans-unit id="element.consent-privacy.properties.privacyPolicyLinkTextLabel">
+			<trans-unit id="element.ConsentCheckbox.properties.privacyPolicyLinkTextLabel">
 				<source>privacy policy</source>
 				<target>Datenschutzerklärung</target>
 			</trans-unit>
+			<trans-unit id="element.Salutation.properties.options.mrs">
+				<source>Mrs.</source>
+				<target>Frau</target>
+			</trans-unit>
+			<trans-unit id="element.Salutation.properties.options.mr">
+				<source>Mr.</source>
+				<target>Herr</target>
+			</trans-unit>
+			<trans-unit id="element.Salutation.properties.options.mx">
+				<source>Mx.</source>
+				<target>Divers</target>
+			</trans-unit>
+			<trans-unit id="element.Title.properties.options.Prof.">
+				<source>Prof.</source>
+				<target>Prof.</target>
+			</trans-unit>
+			<trans-unit id="element.Title.properties.options.Dr.">
+				<source>Dr.</source>
+				<target>Dr.</target>
+			</trans-unit>
+			<trans-unit id="element.Title.properties.options.Prof. Dr.">
+				<source>Prof. Dr.</source>
+				<target>Prof. Dr.</target>
+			</trans-unit>			
 
 
 			<trans-unit id="validation.error.1221559976" xml:space="preserve">

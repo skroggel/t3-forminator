@@ -3,21 +3,40 @@
 	<file source-language="en" target-language="de" datatype="plaintext">
 		<header />
 		<body>
-			<trans-unit id="element.consent-privacy.properties.text">
+			<trans-unit id="element.ConsentCheckbox.properties.text">
 				<source>By submitting the form, you consent to the processing and use of your data in accordance with the #privacyPolicy# and our #termsAndConditions#.</source>
 			</trans-unit>
-			<trans-unit id="element.consent-privacy.properties.privacyPolicyLinkText">
+			<trans-unit id="element.ConsentCheckbox.properties.privacyPolicyLinkText">
 				<source>privacy policy</source>
 			</trans-unit>
-			<trans-unit id="element.consent-privacy.properties.termsAndConditionsLinkText">
+			<trans-unit id="element.ConsentCheckbox.properties.termsAndConditionsLinkText">
 				<source>terms and conditions</source>
 			</trans-unit>
-			<trans-unit id="element.consent-privacy.properties.label">
+			<trans-unit id="element.ConsentCheckbox.properties.label">
 				<source>I accept the #privacyPolicy#</source>
 			</trans-unit>
-			<trans-unit id="element.consent-privacy.properties.privacyPolicyLinkTextLabel">
+			<trans-unit id="element.ConsentCheckbox.properties.privacyPolicyLinkTextLabel">
 				<source>privacy policy</source>
 			</trans-unit>
+			<trans-unit id="element.Salutation.properties.options.mrs">
+				<source>Mrs.</source>
+			</trans-unit>
+			<trans-unit id="element.Salutation.properties.options.mr">
+				<source>Mr.</source>
+			</trans-unit>
+			<trans-unit id="element.Salutation.properties.options.mx">
+				<source>Mx.</source>
+			</trans-unit>
+			<trans-unit id="element.Title.properties.options.Prof.">
+				<source>Prof.</source>
+			</trans-unit>
+			<trans-unit id="element.Title.properties.options.Dr.">
+				<source>Dr.</source>
+			</trans-unit>
+			<trans-unit id="element.Title.properties.options.Prof. Dr.">
+				<source>Prof. Dr.</source>
+			</trans-unit>
+
 
 			<trans-unit id="validation.error.1221559976" xml:space="preserve">
 				<source>Please enter a valid e-mail address.</source>
