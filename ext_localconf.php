@@ -26,6 +26,30 @@ call_user_func(
                 = \Madj2k\Forminator\EventListener\ModifyFlexFormEvent::class;
 
         }
+
+        //=================================================================
+        // Add form configuration
+        //=================================================================
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript(
+            $extKey,
+            'setup',
+            'module.tx_form {
+                settings {
+                    yamlConfigurations {
+                        10 = EXT:form/Configuration/Yaml/FormSetup.yaml
+                        1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
+                    }
+                }
+            }
+            plugin.tx_form {
+                settings {
+                    yamlConfigurations {
+                        10 = EXT:form/Configuration/Yaml/FormSetup.yaml
+                        1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
+                    }
+                }
+            }'
+        );
     },
 	'forminator'
 );
