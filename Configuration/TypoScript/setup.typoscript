@@ -28,13 +28,23 @@ plugin.tx_forminator {
 	}
 }
 
-<<<<<<< Updated upstream
-
-=======
 // ====================================================
 // Add configuration for forms
->>>>>>> Stashed changes
-// ======================================================================================
+//=====================================================
+plugin.tx_form {
+
+	view {
+		# Note that this configuration only affects the EXT:Form plugin
+		# template (form/Resources/Private/Frontend/Templates/Render.html)
+		templateRootPaths {
+		    1727248952 = EXT:forminator/Resources/Private/Templates/
+		}
+	}
+}
+
+// ====================================================
+// Add configuration for forms
+//=====================================================
 plugin.tx_formconsent {
 	view {
     	templateRootPaths {
