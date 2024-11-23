@@ -1,0 +1,8 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+>
+    <f:comment><!-- add further settings here - maybe with access to settings.* via renderables --></f:comment>
+    <formvh:render persistenceIdentifier="{settings.persistenceIdentifier}"
+                   overrideConfiguration="{finishers: formConfiguration.finishers}"/>
+</html>
