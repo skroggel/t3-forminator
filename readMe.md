@@ -194,7 +194,7 @@ see: [/Configuration/Yaml/FormElements/Title.yaml]()
 ## Configuration/AddToEmailFinisherAsReciever
 This ViewHelper can be used to dynamically add further recipients to the finisher configuration of the email finisher after the form has been sent.
 dynamically with additional recipients. This is useful if, for example, the form is to be sent to different recipients based on a subject selected in the form.
-subject selected in the form is to be sent to different recipients. This ViewHelper can ideally be used together with the Request/GetRecordByFormParamViewHelper.
+subject selected in the form is to be sent to different recipients. This ViewHelper can ideally be used together with the Record/GetByFormParamViewHelper.
 
 Example: Individual recipient based on link via contact form
 
@@ -255,7 +255,7 @@ and added as a recipient for the e-mail finisher.
 >
 
     <f:variable name="myRecord"
-                value="{forminator:request.getRecordByFormParam(
+                value="{forminator:record.getByFormParam(
                             formIdentifier: formConfiguration.renderingOptions._originalIdentifier,
                             param: 'contact-uid',
                             table: 'tx_example_domain_model_contact'
@@ -313,18 +313,48 @@ Linebreaks and indentations only occur where they are needed.
 And nowhere else. see? you can also add a space at line-end!
 ```
 
-## Request/GetRecordByFormParamViewHelper
+## Record/GetByFormParamViewHelper
 This ViewHelper loads a data record from any table based on a form parameter from the request object.
 This can be helpful if, for example, you want to select a specific contact address as the recipient for the finisher based on a selection of the topic after the form has been sent.
-The relevant data record can then be loaded.
+The relevant data record can then be loaded. The field-parameter is optional. If not set, the whole record is returned as array.
 
 See above!
 ```
 <f:variable name="myRecord"
-            value="{forminator:request.getRecordByFormParam(
+            value="{forminator:record.getByFormParam(
                         formIdentifier: formConfiguration.renderingOptions._originalIdentifier,
                         param: 'contact-uid',
-                        table: 'tx_example_domain_model_contact'
+                        table: 'tx_example_domain_model_test',
+                        field: 'title'
+                    )}"
+/>
+```
+
+## Record/GetByIdentifierViewHelper
+This ViewHelper loads a data record from any table based on a the value of the given form-field-identifier.
+This can be helpful if, for example, you want to display detail information of a database-record based on the value of a field in your form.
+The field-parameter is optional. If not set, the whole record is returned as array.
+```
+<f:variable name="myRecord"
+            value="{forminator:record.getByIdentifier(
+                        identifier: 'contact-uid',
+                        table: 'tx_example_domain_model_test',
+                        field: 'title'
+                    )}"
+/>
+```
+
+## Record/GetByUidViewHelper
+This ViewHelper loads a data record from any table based on a the value of the given uid.
+This can be helpful if, for example, you want to display detail information of a database-record based on a uid.
+The field-parameter is optional. If not set, the whole record is returned as array.
+
+```
+<f:variable name="myRecord"
+            value="{forminator:record.getByIdentifier(
+                        uid: 12345,
+                        table: 'tx_example_domain_model_test',
+                        field: 'title'
                     )}"
 />
 ```
