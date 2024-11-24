@@ -65,16 +65,7 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
     ): string {
 
         $value = $renderChildrenClosure();
-        $convertLineBreaks = (bool) ($arguments['convertLineBreaks'] ?: $arguments['keepLineBreaks']);
-
-        // log deprecated attribute
-        if ($arguments['keepLineBreaks']) {
-            trigger_error(
-                __CLASS__ . ': Argument "keepLineBreaks" on postmaster:email.plaintextLineBreaks is deprecated. '.
-                'Use "convertLineBreaks" instead.',
-                E_USER_DEPRECATED
-            );
-        }
+        $convertLineBreaks = (bool) ($arguments['convertLineBreaks'] ?: false);
 
         // convert line breaks to manual line breaks
         if ($convertLineBreaks) {

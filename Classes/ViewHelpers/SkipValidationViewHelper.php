@@ -76,7 +76,7 @@ final class SkipValidationViewHelper extends AbstractViewHelper
 
 			if ($parentFormElement instanceof Page) {
 				if ($renderingOptions = $parentFormElement->getRenderingOptions()) {
-					if ($renderingOptions['skipValidation']) {
+					if (!empty($renderingOptions['skipValidation'])) {
 						return true;
 					}
 				}
