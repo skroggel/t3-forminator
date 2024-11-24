@@ -5,16 +5,5 @@ TYPO3:
         standard:
           formElementsDefinition:
             Hcaptcha:
-              variants:
-                - identifier: hide-1
-                  renderingOptions:
-                    enabled: false
-                  condition: 'finisherIdentifier in ["EmailToSender", "EmailToReceiver"]'
-                - identifier: hide-2
-                  renderingOptions:
-                    enabled: false
-                  condition: 'finisherIdentifier !== "" || isConsentApproved() || isConsentDismissed()'
-                - identifier: show-1
-                  renderingOptions:
-                    enabled: true
-                  condition: 'stepType == "SummaryPage"'
+              renderingOptions:
+                templateName: 'HCaptcha'

@@ -83,10 +83,15 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
         // replace real line breaks and indents
         $value = preg_replace("/\r|\n|\t|([ ]{2,})/", '', trim($value));
+
         // convert manual line breaks - only if no convertLineBreaks-attribute given!
         if (! $convertLineBreaks) {
             $value = str_replace('\n', "\n", $value);
         }
+
+        // replace manual spaces
+        $value = str_replace('\s', " ", $value);
+
 
         return $value;
     }

@@ -15,9 +15,9 @@ namespace Madj2k\Forminator\EventListener;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class ModifyFlexFormEvent
@@ -35,20 +35,49 @@ class ModifyFlexFormEvent
 	/**
 	 * @const string
 	 */
-	protected const EXTENSION_NAME = 'forminator';
+	protected const FORM_PLUGIN_NAME = 'form_formframework';
 
 
-	/**
-	 * @const array
-	 */
-	protected const FLEXFORM_EXTEND_FILES = [
-		'plugin_name' => [
-			0 => [
-				'file' => 'File.xml',
-			],
-		]
-	];
 
+
+    protected function getExtensionConf (): array {
+
+        $configReader = GeneralUtility::makeInstance(ExtensionConfiguration::class);
+        $extensionConfig = $configReader->get('forminator');
+
+        $configuration = [];
+        if (! empty($extensionConfig['flexformExtensionFiles'])) {
+
+            $flexForms = GeneralUtility::trimExplode(',', $extensionConfig['flexformExtensionFiles'], true);
+            foreach ($flexForms as $flexForm) {
+
+                if ($flexFormConfig = GeneralUtility::trimExplode('|', $flexForm, true)) {
+                    $formFileIdentifier = $flexFormConfig[0];
+                    $flexFormFile = $flexFormConfig[1];
+
+                    if (! isset($configuration[self::FORM_PLUGIN_NAME])) {
+                        $configuration[self::FORM_PLUGIN_NAME] = [];
+                    }
+
+                    if ($formFileIdentifier == '*') {
+                        $configuration[self::FORM_PLUGIN_NAME][] = [
+                            'file' => $flexFormFile,
+                        ];
+                    } else {
+                        $configuration[self::FORM_PLUGIN_NAME][] = [
+                            'file' => $flexFormFile,
+                            'condition' => [
+                                'field' => 'ext-form-persistenceIdentifier',
+                                'value' => $formFileIdentifier
+                            ]
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $configuration;
+    }
 
 	/**
      * Called as event
@@ -60,7 +89,9 @@ class ModifyFlexFormEvent
 	{
 		$dataStructure = $event->getDataStructure();
 		$identifier = $event->getIdentifier();
-		$event->setDataStructure($this->addFlexForms($identifier, $dataStructure));
+        $extConf = $this->getExtensionConf();
+
+		$event->setDataStructure($this->addFlexForms($identifier, $dataStructure, $extConf));
 	}
 
 
@@ -74,22 +105,24 @@ class ModifyFlexFormEvent
      */
     public function parseDataStructureByIdentifierPostProcess(array $dataStructure, array $identifier): array
     {
-        return $this->addFlexForms($identifier, $dataStructure);
+        $extConf = $this->getExtensionConf();
+        return $this->addFlexForms($identifier, $dataStructure, $extConf);
     }
 
 
     /**
      * @param array $identifier
      * @param array $dataStructure
+     * @param array $extConf
      * @return array
      */
-    protected function addFlexForms(array $identifier, array $dataStructure): array
+    protected function addFlexForms(array $identifier, array $dataStructure, array $extConf): array
     {
 
         if ($identifier['type'] === 'tca' && $identifier['tableName'] === 'tt_content') {
 
             // got through extend-settings
-            foreach (self::FLEXFORM_EXTEND_FILES as $cType => $flexforms) {
+            foreach ($extConf as $cType => $flexforms) {
 
                 // check for CType
                 if ($identifier['dataStructureKey'] === '*,' . $cType) {
@@ -114,7 +147,7 @@ class ModifyFlexFormEvent
 
                         if ($extendFlexForm) {
                             $file = GeneralUtility::getFileAbsFileName(
-                                'EXT:' . self::EXTENSION_NAME . '/Configuration/FlexForms/' . $config['file']
+                                $config['file']
                             );
                             $content = file_get_contents($file);
                             if ($content) {

@@ -6,4 +6,8 @@ TYPO3:
           formElementsDefinition:
             ConsentContainer:
               __inheritances:
-                10: "TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Fieldset"
+                10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Fieldset'
+              properties:
+                containerClassAttribute: ~
+                elementClassAttribute: 'form-element form-element-fieldset form-consent-container'
+                elementErrorClassAttribute: ~

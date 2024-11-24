@@ -6,7 +6,7 @@ TYPO3:
           formElementsDefinition:
             SkipValidation:
               __inheritances:
-                10: "TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Hidden"
+                10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Hidden'
               # Prevent successful submission on change
               variants:
                 - identifier: skip-validation

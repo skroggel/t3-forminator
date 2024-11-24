@@ -21,6 +21,12 @@
 				<source>Error</source>
 				<target>Fehler</target>
 			</trans-unit>
+			<trans-unit id="flexForm.tab.privacyTermsConditions.title">
+				<source>Privcy / Terms and Conditions</source>
+				<target>Datenschutz / AGB</target>
+			</trans-unit>
+
+
 			<trans-unit id="flexForm.settings.registrationPid">
 				<source>Page with Registration</source>
 				<target>Seite mit Registrierung</target>
@@ -44,6 +50,21 @@
 			<trans-unit id="flexForm.settings.linkLabel">
 				<source>Link-Label</source>
 				<target>Link-Beschriftung</target>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.privacyPolicyPid">
+				<source>Page of privacy policy</source>
+				<target>Seite der Datenschutzerklärung</target>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.termsAndConditionsPid">
+				<source>Page of terms and conditions</source>
+				<target>Seite der AGB</target>
+			</trans-unit>
+
+
+			<!-- Extension-Conf -->
+			<trans-unit id="extConf.flexformExtensionFiles">
+				<source>Comma-separated list according to the scheme “formPersistenceIdentifier:fileNameToExtend” for the extension of the BE fields provided in the form plugin, depending on the currently selected form.: EXT:example/Resources/Private/Forms/my-form.form.yaml|EXT:example/Configuration/FlexForms/ExtensionFlexform.xml</source>
+				<target>Kommaseparariete Liste nach dem Schema "formPersistenceIdentifier|fileNameToExtend" für die Erweiterung der im Form-Plugin bereitgestellten BE-Felder, jeweils abhängig vom gerade gewählten Formular.: EXT:example/Resources/Private/Forms/my-form.form.yaml|EXT:example/Configuration/FlexForms/ExtensionFlexform.xml</target>
 			</trans-unit>
 
 
