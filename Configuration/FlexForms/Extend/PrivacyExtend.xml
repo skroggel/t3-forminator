@@ -1,0 +1,37 @@
+
+<sheets>
+	<extra>
+		<ROOT>
+			<sheetTitle>
+                LLL:EXT:forminator/Resources/Private/Language/locallang_be.xlf:flexForm.tab.privacyTermsConditions.title
+			</sheetTitle>
+			<type>array</type>
+			<el>
+				<settings.privacyPolicyPid>
+					<label>
+                        LLL:EXT:forminator/Resources/Private/Language/locallang_be.xlf:flexForm.settings.privacyPolicyPid
+					</label>
+					<config>
+                        <type>group</type>
+                        <allowed>pages</allowed>
+                        <maxitems>1</maxitems>
+                        <minitems>0</minitems>
+                        <size>1</size>
+					</config>
+				</settings.privacyPolicyPid>>
+                <settings.termsAndConditionsPid>
+                    <label>
+                        LLL:EXT:forminator/Resources/Private/Language/locallang_be.xlf:flexForm.settings.termsAndConditionsPid
+                    </label>
+                    <config>
+                        <type>group</type>
+                        <allowed>pages</allowed>
+                        <maxitems>1</maxitems>
+                        <minitems>0</minitems>
+                        <size>1</size>
+                    </config>
+                </settings.termsAndConditionsPid>>
+			</el>
+		</ROOT>
+	</extra>
+</sheets>

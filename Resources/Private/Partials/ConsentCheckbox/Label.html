@@ -1,7 +1,8 @@
 <html
 	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
 	xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
-	data-namespace-typo3-fluid="true"
+    xmlns:forminator="http://typo3.org/ns/Madj2k/Forminator/ViewHelpers"
+    data-namespace-typo3-fluid="true"
 >
 
 	<f:if condition="{text}">
@@ -15,12 +16,18 @@
 			<f:variable name="linkPid"
 						value="{element.properties.{config}Pid}"
 			/>
+            <f:comment><!-- check for settings of flexForm --></f:comment>
+            <f:if condition="{forminator:settings(key: '{config}Pid')}">
+                <f:variable name="linkPid"
+                            value="{forminator:settings(key: '{config}Pid')}"
+                />
+            </f:if>
 
 			<f:if condition="{linkPid}">
 				<f:then>
 					<f:variable
 						name="link"
-						value="{linkText -> f:link.page(pageUid: linkPid, target: '_blank')}"
+						value="{linkText -> f:link.page(pageUid: linkPid, target: '_blank', class:'link')}"
 					/>
 				</f:then>
 				<f:else>
@@ -34,7 +41,6 @@
 				name="text"
 				value="{f:replace(search: '#{config}#', replace: link, value: text)}"
 			/>
-
 		</f:for>
 	</f:if>
 

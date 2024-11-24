@@ -15,20 +15,20 @@ namespace Madj2k\Forminator\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Form\Domain\Model\Renderable\RenderableInterface;
 use TYPO3\CMS\Form\ViewHelpers\RenderRenderableViewHelper;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class GetElementByIdentifierViewHelper
+ * Class SettingsViewHelper
  *
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright Steffen Kroggel <developer@steffenkroggel.de>
  * @package Madj2k\Forminator
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-final class GetElementValueByIdentifierViewHelper extends AbstractViewHelper
+final class SettingsViewHelper extends AbstractViewHelper
 {
 
 	/**
@@ -39,15 +39,16 @@ final class GetElementValueByIdentifierViewHelper extends AbstractViewHelper
 	public function initializeArguments(): void
 	{
 		parent::initializeArguments();
-		$this->registerArgument('identifier', 'string', 'The element id to fetch the value from', false);
-	}
+        $this->registerArgument('key', 'string', 'The settings-key.', false, '');
+
+    }
 
 
 	/**
 	 * @param array $arguments
 	 * @param \Closure $renderChildrenClosure
 	 * @param \TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface $renderingContext
-	 * @return mixed
+	 * @return string|array
 	 */
 	public static function renderStatic(
 		array $arguments,
@@ -55,19 +56,31 @@ final class GetElementValueByIdentifierViewHelper extends AbstractViewHelper
 		RenderingContextInterface $renderingContext
 	) {
 
-		/** @var string $identifier */
-		if ($identifier = $arguments['identifier']) {
+        /** @var \TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime */
+        $formRuntime = $renderingContext
+            ->getViewHelperVariableContainer()
+            ->get(RenderRenderableViewHelper::class, 'formRuntime');
 
-			/** @var \TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime */
-			$formRuntime = $renderingContext
-				->getViewHelperVariableContainer()
-				->get(RenderRenderableViewHelper::class, 'formRuntime');
 
-			if (isset($formRuntime[$identifier])) {
-				return $formRuntime[$identifier];
-			}
-		}
+        /** @var \TYPO3\CMS\Form\Domain\Model\FormDefinition $formDefinition */
+        if (
+            (isset($formRuntime['formDefinition']))
+            && ($formDefinition = $formRuntime['formDefinition'])
+            && ($renderingOptions = $formDefinition->getRenderingOptions())
+            && (isset($renderingOptions['_settings']))
+            && ($settings = $renderingOptions['_settings'])
+        ){
 
-		return null;
+            /** @var string $identifier */
+            if ($key = $arguments['key']) {
+                return $settings[$key] ?? '';
+            }
+
+            return $settings;
+        }
+
+        return [];
 	}
+
+
 }

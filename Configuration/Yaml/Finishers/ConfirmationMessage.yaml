@@ -9,7 +9,7 @@ TYPO3:
               options:
                 templateName: ConfirmationMessage
                 templateRootPaths:
-                  10: "EXT:forminator/Resources/Private/Templates/Finishers/ConfirmationMessage/"
+                  10: 'EXT:forminator/Resources/Private/Templates/Finishers/ConfirmationMessage/'
                 assignOptions:
                   - message
                   - header

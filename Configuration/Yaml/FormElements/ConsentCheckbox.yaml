@@ -6,8 +6,16 @@ TYPO3:
           formElementsDefinition:
             ConsentCheckbox:
               __inheritances:
-                10: "TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Checkbox"
+                10: 'TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Checkbox'
               properties:
+                containerClassAttribute: 'form-element form-element-check form-element-consent'
+                elementClassAttribute: 'form-check-input'
+                elementErrorClassAttribute: ~
+                labelClassAttribute: 'form-check-wrapping-label'
+                labelTextClassAttribute: 'form-check-label form-element-consent-label'
+                descriptionTextClassAttribute: 'form-check-label form-element-consent-text'
+
+                hideText: 0
                 label: 'Privacy Policy / Terms & Conditions'
                 text: 'By submitting the form, you consent to the processing and use of your data in accordance with the #privacyPolicy# and our #termsAndConditions#.'
                 privacyPolicyPid: 1

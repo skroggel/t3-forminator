@@ -3,21 +3,23 @@
 	xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
 	data-namespace-typo3-fluid="true"
 >
+    <formvh:renderRenderable renderable="{element}">
+        <f:variable name="fluidAdditionalAttributes" value="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"/>
+        <f:variable name="additionalAttributes" value="" />
+        <f:if condition="{fluidAdditionalAttributes}">
+            <f:for each="{fluidAdditionalAttributes}" as="value" key="key">
+                <f:variable name="additionalAttributes" value='{additionalAttributes} {key}="{value}"' />
+            </f:for>
+        </f:if>
 
-	<formvh:renderRenderable renderable="{element}">
-        <fieldset id="{element.uniqueIdentifier}" class="form-group{f:if(condition: element.properties.elementClassAttribute, then: ' {element.properties.elementClassAttribute}')}">
-
+        <fieldset id="{element.uniqueIdentifier}" class="{element.properties.elementClassAttribute}" {additionalAttributes -> f:format.raw()}>
             <f:variable name="label" value="{formvh:translateElementProperty(element: element, property: 'label')}" />
             <f:if condition="{label}">
                 <legend>{label}</legend>
             </f:if>
-
             <f:for each="{element.elements}" as="element">
-                <f:render
-                    partial="{element.templateName}"
-                    arguments="{element: element}"
-                />
+                <f:render partial="{element.templateName}" arguments="{element: element}" />
             </f:for>
-		</fieldset>
-	</formvh:renderRenderable>
+        </fieldset>
+    </formvh:renderRenderable>
 </html>
