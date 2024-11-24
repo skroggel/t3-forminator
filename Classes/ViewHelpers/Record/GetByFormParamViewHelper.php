@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace Madj2k\Forminator\ViewHelpers\Request;
+namespace Madj2k\Forminator\ViewHelpers\Record;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -15,21 +15,17 @@ namespace Madj2k\Forminator\ViewHelpers\Request;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\Query\Restriction\PageIdListRestriction;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class GetRecordByFormParamViewHelper
+ * Class GetByFormParamViewHelper
  *
  * @author Steffen Kroggel <developer@steffenkroggel.de>
  * @copyright Steffen Kroggel <developer@steffenkroggel.de>
  * @package Madj2k\Forminator
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-final class GetRecordByFormParamViewHelper extends AbstractViewHelper
+final class GetByFormParamViewHelper extends AbstractViewHelper
 {
 
 	/**
@@ -42,7 +38,6 @@ final class GetRecordByFormParamViewHelper extends AbstractViewHelper
 		parent::initializeArguments();
         $this->registerArgument('formIdentifier', 'string', 'The form identifier.', true);
         $this->registerArgument('param', 'string', 'The parameter name to get from the request.', true);
-        $this->registerArgument('table', 'string', 'The table to fetch the data from.', true);
     }
 
 
@@ -65,17 +60,19 @@ final class GetRecordByFormParamViewHelper extends AbstractViewHelper
         /** @var string $param */
         $formIdentifier = $arguments['formIdentifier'];
 
-        /** @var string $param */
+        /** @var string $table */
         $table = $arguments['table'];
+
+        /** @var string $field */
+        $field = $arguments['field'];
 
         /** @var \Psr\Http\Message\ServerRequestInterface $request */
         $request = $renderingContext->getRequest();
 
         if ($params = $request->getParsedBody()) {
             if (!empty($params['tx_form_formframework'][$formIdentifier][$param])) {
-
                 if ($uid = (int) $params['tx_form_formframework'][$formIdentifier][$param]) {
-                    return self::findByUid($uid, $table);
+                    return self::findByUid($uid, $table, $field);
                 }
             }
         }
@@ -84,42 +81,5 @@ final class GetRecordByFormParamViewHelper extends AbstractViewHelper
 	}
 
 
-    /**
-     * Returns dataset by uid
-     *
-     * @param int $uid
-     * @param string $table
-     * @return array
-     * @throws \Doctrine\DBAL\Exception
-     */
-    protected static function findByUid(int $uid, string $table) : array
-    {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable($table);
-
-        $queryBuilder->getRestrictions()
-            ->removeByType(PageIdListRestriction::class);
-
-        $statement = $queryBuilder
-            ->select('*')
-            ->from($table);
-
-        $statement->where(
-            $queryBuilder->expr()->eq(
-                $table. '.uid',
-                $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)
-            ),
-        );
-
-        $result = $statement
-            ->executeQuery()
-            ->fetchAssociative();
-
-        if (! $result) {
-            $result = [];
-        }
-
-        return $result;
-    }
 
 }
