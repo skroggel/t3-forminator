@@ -5,9 +5,42 @@ This extension comes with several additional validators, finishers, formElements
 * improved email-validation
 * validator for phone-numbers
 * ViewHelper for well formated plaintext-emails
+* removes the annoying utility-classes (mb-3, mb-2) of the new default layout (layout2) of typo3/cms-form
 
 # Installation
 Simply install the extension and integrate the TypoScript of the extension into the root page of the website.
+
+# Basics
+This extension removes the annoying utility-classes (mb-3, mb-2) of the new default layout (layout2) of typo3/cms-form.
+It also adds a basic grid-configuration.
+
+# Extended standard flexform for typo3/cms-form
+The extension expands the standard form flexform to include the option of specifying the privacy policy page and the
+terms and conditions in the backend. This can be used for the corresponding consent checkboxes.
+
+You can also define your own extensions to the form flexform via the extension configuration in BE (System -> Setup -> Extension Configuration).
+This is possible for all forms (*-wildcard) as well as for individual forms.
+
+**_Example:_** Extension of the Flexform when the “my-form” form is selected with the fields defined in the “ExtensionFlexform.xml” file.
+```
+EXT:example/Resources/Private/Forms/my-form.form.yaml|EXT:example/Configuration/FlexForms/ExtensionFlexform.xml
+```
+
+**Important: Extension flexforms require a slightly different structure in order to work.**
+An example can be found under [/Configuration/FlexForms/Extend/PrivacyExtend.xml]()
+
+The settings are then added to the renderingOptions of the FormDefintion (via Render.html) and thus can be accessed via the settingsViewHelper:
+```
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+      xmlns:forminator="http://typo3.org/ns/Madj2k/Forminator/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+>
+
+    <forminator:settings key="privacyPid"/>
+
+</html>
+```
 
 # Finishers
 ## ConfirmationMessageFinisher
@@ -44,7 +77,18 @@ see: [/Configuration/Yaml/Validators/BetterEmailAddress.yaml]()
 
 ## PhoneValidators
 Checks for valid phone numbers.
+You can enable / disable if the international area code is allowed.
 
+```
+renderables:
+  telephone:
+    identifier: telephone
+    type: Telephone
+    validators:
+      - identifier: Phone
+        options:
+          allowLeadingPlus: 1
+```
 see: [/Configuration/Yaml/Validators/BetterEmailAddress.yaml]()
 
 # FormElements
@@ -97,11 +141,12 @@ Translations:
 ```
 
 ## Hcaptcha
-Customized configuration for the use of dreistromland/typo3-hcaptcha together with the extension eliashaeussler/typo3-form-consent
+Customized configuration for the use of dreistromland/typo3-hcaptcha and for usage together with the extension eliashaeussler/typo3-form-consent
 The configruation has to be imported separately, because it is optional. Just include this snippet in your configuration:
 ```
 imports:
-  - { resource: "EXT:forminator/Configuration/Yaml/FormElements/Hcaptcha.yaml" }
+  - { resource: "EXT:forminator/Configuration/Yaml/FormElements/Hcaptcha.yaml" } # hcaptcha
+  - { resource: "EXT:forminator/Configuration/Yaml/FormElements/HcaptchaConsent.yaml" } # additional, when hcaptcha plus consent
 ```
 
 see: [/Configuration/Yaml/FormElements/Hcaptcha.yaml]()
@@ -146,6 +191,99 @@ A ready to use select field with typical titles.
 see: [/Configuration/Yaml/FormElements/Title.yaml]()
 
 # ViewHelpers
+## Configuration/AddToEmailFinisherAsReciever
+This ViewHelper can be used to dynamically add further recipients to the finisher configuration of the email finisher after the form has been sent.
+dynamically with additional recipients. This is useful if, for example, the form is to be sent to different recipients based on a subject selected in the form.
+subject selected in the form is to be sent to different recipients. This ViewHelper can ideally be used together with the Request/GetRecordByFormParamViewHelper.
+
+Example: Individual recipient based on link via contact form
+
+### Step 1
+Pass the ID of the contact data record via the GET parameter “contact” and include it as a hidden field
+TypoScript:
+```
+plugin.tx_form {
+    settings {
+        formDefinitionOverrides {
+            your-form {
+				renderables {
+					step-first {
+						renderables {
+							contact-uid {
+								defaultValue = TEXT
+								defaultValue.data = GP:contact
+								defaultValue.stdWrap.intval = true
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+}
+```
+### Schritt 2
+Form YAML with hidden field:
+```
+type: Form
+identifier: your-form
+prototypeName: standard
+
+renderables:
+  step-first:
+    identifier: step-first
+    type: Page
+    renderables:
+      contact-uid:
+        identifier: contact-uid
+        type: Hidden
+
+finishers:
+  emailToReceiver:
+    identifier: EmailToReceiver
+```
+
+### Schritt 3
+The contact data record is now loaded in **Render.html** after the form has been sent
+and added as a recipient for the e-mail finisher.
+```
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+      xmlns:iselContact="http://typo3.org/ns/Multivisio/IselContact/ViewHelpers"
+      xmlns:forminator="http://typo3.org/ns/Madj2k/Forminator/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+>
+
+    <f:variable name="myRecord"
+                value="{forminator:request.getRecordByFormParam(
+                            formIdentifier: formConfiguration.renderingOptions._originalIdentifier,
+                            param: 'contact-uid',
+                            table: 'tx_example_domain_model_contact'
+                        )}"
+    />
+
+    <f:if condition="{myRecord}">
+            <f:variable name="formConfiguration"
+                        value="{forminator:configuration.addToEmailFinisherAsReceiver(
+                                    formConfiguration: formConfiguration,
+                                    finisherIdentifier: 'emailToReceiver',
+                                    email: myRecord.email,
+                                    name: '{myRecord.firstname} {myRecord.lastname}',
+                                    override: 1
+                                )}"
+            />
+    </f:if>
+
+    <formvh:render persistenceIdentifier="{settings.persistenceIdentifier}"
+                   overrideConfiguration="{
+                        finishers: formConfiguration.finishers,
+                        renderingOptions: {
+                            _settings: settings
+                        }
+           }"/>
+</html>
+```
+
 ## Email/PlaintextLineBreaksViewHelper
 With this viewHelper it is possible to generate plaintext mails without having to take care of indentations or line-breaks.
 This is often a problem because if you e.g. use conditions in your plaintext mail-templates, the code quickly becomes unreadable.
@@ -163,15 +301,32 @@ Usage:
     <f:section name="Main"><forminator:email.plaintextLineBreaks>
 
         Linebreaks and indentations only occur
-                where they are needed. \n
-            And nowhere else.
+                where they are needed.\n
+            And nowhere else:\s
+            see? you can also add a space at line-end!
     </forminator:email.plaintextLineBreaks></f:section>
 </html>
 ```
 Result:
 ```
 Linebreaks and indentations only occur where they are needed.
-And nowhere else.
+And nowhere else. see? you can also add a space at line-end!
+```
+
+## Request/GetRecordByFormParamViewHelper
+This ViewHelper loads a data record from any table based on a form parameter from the request object.
+This can be helpful if, for example, you want to select a specific contact address as the recipient for the finisher based on a selection of the topic after the form has been sent.
+The relevant data record can then be loaded.
+
+See above!
+```
+<f:variable name="myRecord"
+            value="{forminator:request.getRecordByFormParam(
+                        formIdentifier: formConfiguration.renderingOptions._originalIdentifier,
+                        param: 'contact-uid',
+                        table: 'tx_example_domain_model_contact'
+                    )}"
+/>
 ```
 
 ## GetElementValueByIdentifier
@@ -214,6 +369,56 @@ The following example checks if a value is null and then sets the field to reado
                     properties:
                         fluidAdditionalAttributes:
                             readonly: readonly
+
+```
+# Templates
+## Checkbox / MultiCheckbox / RadioButton
+This extensions adds a span with the CSS-class "form-check-field" around the input[type="radio"] and input[type="checkbox"] that
+allows customized styling of the radios / checkboxes with CSS only:
+
+Here an rudimentary example in SASS as prove of concept:
+```
+.form-check {
+    .form-check-field:has(input[type="checkbox"]) {
+
+        position:relative;
+        display: inline;
+        padding-left: 16px;
+
+        input {
+            position: absolute;
+            width: 1em;
+            height: 1em;
+            left:0;
+
+            /* hide it visually, but keep it accessible! */
+            opacity: 0;
+        }
+
+        &::before {
+            content: "";
+
+            position: absolute;
+            left: 0
+
+            display: inline-block;
+            width: 16px;
+            height:  16px;
+            border: 1px solid grey;
+            margin-right: 10px;
+            background-size: 100%;
+            background-color: #fff;
+            transform: translateY(4px);
+        }
+
+        &:has(input:checked),
+        &[aria-selected="true"] {
+            &::before {
+                background-color: #ff0000;
+            }
+        }
+    }
+}
 ```
 
 # JS-Features

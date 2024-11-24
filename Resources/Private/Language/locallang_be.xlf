@@ -35,6 +35,21 @@
 			<trans-unit id="flexForm.settings.linkLabel">
 				<source>Link-Label</source>
 			</trans-unit>
+			<trans-unit id="flexForm.settings.privacyPid">
+				<source>Page of privacy policy</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.privacyPolicyPid">
+				<source>Page of privacy policy</source>
+			</trans-unit>
+			<trans-unit id="flexForm.settings.termsAndConditionsPid">
+				<source>Page of terms and conditions</source>
+			</trans-unit>
+
+
+			<!-- Extension-Conf -->
+			<trans-unit id="extConf.flexformExtensionFiles">
+				<source>Comma-separated list according to the scheme “formPersistenceIdentifier|fileNameToExtend” for the extension of the BE fields provided in the form plugin, depending on the currently selected form.: EXT:example/Resources/Private/Forms/my-form.form.yaml|EXT:example/Configuration/FlexForms/ExtensionFlexform.xml</source>
+			</trans-unit>
 
 
 			<!-- Form-Finishers -->

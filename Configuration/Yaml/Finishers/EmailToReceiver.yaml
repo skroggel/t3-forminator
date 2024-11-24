@@ -8,9 +8,10 @@ TYPO3:
               implementationClassName: Madj2k\Forminator\Domain\Finishers\EmailFinisher
               options:
                 templateRootPaths:
-                  20: "EXT:forminator/Resources/Private/Templates/Finishers/Email"
+                  1727248952: 'EXT:forminator/Resources/Private/Templates/Finishers/Email'
                 partialRootPaths:
-                  20: "EXT:forminator/Resources/Private/Partials/Finishers/Email"
+                  1727248952: 'EXT:forminator/Resources/Private/Partials/Finishers/Email'
+                  1727248953: 'EXT:forminator/Resources/Private/Partials'
                 addHtmlPart: true
                 useFluidEmail: true
                 translation:

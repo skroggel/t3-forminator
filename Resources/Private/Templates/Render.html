@@ -3,6 +3,17 @@
       data-namespace-typo3-fluid="true"
 >
     <f:comment><!-- add further settings here - maybe with access to settings.* via renderables --></f:comment>
-    <formvh:render persistenceIdentifier="{settings.persistenceIdentifier}"
-                   overrideConfiguration="{finishers: formConfiguration.finishers}"/>
+    <f:switch expression="{settings.persistenceIdentifier}">
+        <f:defaultCase>
+            <formvh:render persistenceIdentifier="{settings.persistenceIdentifier}"
+                           overrideConfiguration="{
+                                finishers: formConfiguration.finishers,
+                                renderingOptions: {
+                                    _settings: settings
+                                }
+                           }"
+            />
+        </f:defaultCase>
+    </f:switch>
+
 </html>

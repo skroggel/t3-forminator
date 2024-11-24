@@ -51,7 +51,7 @@ plugin.tx_formconsent {
     		1727248952 = EXT:forminator/Resources/Private/Extensions/OptIn/Templates/
     	}
     	partialRootPaths {
-    		1727248952 = EXT:forminator/Resources/Private/Extensions/OptIn/Partials
+    		1727248952 = EXT:forminator/Resources/Private/Extensions/OptIn/Partials/
     	}
   	}
 }
