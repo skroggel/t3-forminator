@@ -487,7 +487,7 @@ $(document).on('madj2k-resize-end', function (e) {
 });
 ```
 
-## form.js
+## forminator.js
 The JS module contains
 * the initialization of customizable dropdowns with the jQuery plugin select2
 * the handling of the resizing of customizable dropdowns with the jQuery plugin select2 in case of a resize-event of the window
@@ -502,7 +502,7 @@ Integrate the JS-file into the page.
 ```
 page {
     includeJSFooterlibs {
-        forminator = EXT:forminator/Resources/Public/JavaScript/forms.js
+        forminator = EXT:forminator/Resources/Public/JavaScript/forminator.js
     }
 }
 ```
