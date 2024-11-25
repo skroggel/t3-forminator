@@ -10,7 +10,9 @@
                 <span class="hcaptcha-description">{element.properties.elementDescription}</span>
             </f:if>
 
-            <hcaptcha:forms.hcaptcha />
+            <div class="form-element form-element-captcha">
+                <hcaptcha:forms.hcaptcha />
+            </div>
 
             <f:form.hidden
                     property="{element.identifier}"
