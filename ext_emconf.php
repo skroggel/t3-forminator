@@ -30,6 +30,7 @@ $EM_CONF[$_EXTKEY] = [
 		'suggests' => [
             'form_consent' => '2.2.0-2.2.99',
             'hcaptcha' => '2.2.0-2.2.99',
+            'typoscript_rendering' =>  '12.4.0-12.4.99',
         ],
 	],
 ];
