@@ -6,6 +6,9 @@ This extension comes with several additional validators, finishers, formElements
 * validator for phone-numbers
 * ViewHelper for well formated plaintext-emails
 * removes the annoying utility-classes (mb-3, mb-2) of the new default layout (layout2) of typo3/cms-form
+* several JS functions for forms (reloadOnChange, submitOnChange, AJAX-submit, removal of error classes when user edits fields,...)
+* JS-init for select2 elements
+* Resize-End-Event for handling the resize event only once on the end
 
 # Installation
 Simply install the extension and integrate the TypoScript of the extension into the root page of the website.
@@ -484,14 +487,14 @@ $(document).on('madj2k-resize-end', function (e) {
 });
 ```
 
-## form.js
+## forminator.js
 The JS module contains
 * the initialization of customizable dropdowns with the jQuery plugin select2
 * the handling of the resizing of customizable dropdowns with the jQuery plugin select2 in case of a resize-event of the window
 * the CSS class “js-forminator-submit-on-change” can be used to submit a form as soon as the value of the field changes (submit-on-change)
-* The CSS class “js-forminator-reload-on-change” can be used to submit a form and reload it without validation as soon as the value of the field changes (reload-on-change).
-
-The latter function can be combined well with the SkipValidation function.
+* the CSS class “js-forminator-reload-on-change” can be used to submit a form and reload it without validation as soon as the value of the field changes (reload-on-change).
+* ajax-submit for forms (requires helhum/typoscript-rendering)
+* removal of error classes / error messages on fields when user edits these fields again
 
 ### Integration
 **Important: The script requires jQuery.**
@@ -499,7 +502,7 @@ Integrate the JS-file into the page.
 ```
 page {
     includeJSFooterlibs {
-        forminator = EXT:forminator/Resources/Public/JavaScript/forms.js
+        forminator = EXT:forminator/Resources/Public/JavaScript/forminator.js
     }
 }
 ```
@@ -550,7 +553,7 @@ Example:
                class=form-control js-forminator-select2-single"
 ```
 
-### Usage with Submit-On-Change
+### Usage of Submit-On-Change
 This is useful, for example, in the context of search forms that should automatically update the search results when a field is changed.
 To do this, simply add the CSS class “js-forminator-submit-on-change” to the element that is to submit the form in the event of an onChange event.
 This function is not necessarily linked to the form framework.
@@ -565,7 +568,7 @@ Usage of the CSS-class:
 
 ```
 
-### Usage with Reload-On-Change
+### Usage of Reload-On-Change
 Below is an example of its use in combination with SkipValidation.
 
 In this example case, we have a form that offers two options.
@@ -602,6 +605,73 @@ renderables:
                             condition: 'traverse(formValues, "options") != "option-1"'
                             validators:
                                 -   identifier: NotEmpty
+```
+
+## Usage of Ajax-Submit for forms
+**Important: this feature requries helhum/typoscript-rendering!**
+
+You simply have to add an data-action-attribute to your form. This automatically binds the ajax-function
+to your form.
+```
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+      xmlns:typoscriptRendering="http://typo3.org/ns/Helhum/TyposcriptRendering/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+>
+
+    <formvh:renderRenderable renderable="{form}">
+        <formvh:form
+            object="{form}"
+            action="{form.renderingOptions.controllerAction}"
+            method="{form.renderingOptions.httpMethod}"
+            id="{form.identifier}"
+            section="{form.identifier}"
+            enctype="{form.renderingOptions.httpEnctype}"
+            addQueryString="{form.renderingOptions.addQueryString}"
+            argumentsToBeExcludedFromQueryString="{form.renderingOptions.argumentsToBeExcludedFromQueryString}"
+            additionalParams="{form.renderingOptions.additionalParams}"
+            additionalAttributes="{formvh:translateElementProperty(element: form, property: 'fluidAdditionalAttributes')}"
+            data="{action: '{typoscriptRendering:uri.action(action: form.renderingOptions.controllerAction, controller: \'FormFrontend\')}'}"
+            class="form"
+        >
+    [...]
+```
+
+The script automatically scrolls either to the top of the form OR to the first error-field of the form.
+You can deactivate this by adding the data-attribute "data-no-scroll-to" to your form.
+
+You can also define a scroll-to-element by adding the data-attribute "data-scroll-to" with an element-id.
+In this case the script does not scroll to the top of the form but to the element defined.
+However, if there is a form-field with an error-class in the form, this takes precedence.
+
+If you use the default configuration of typo3/cms-form with the new default layout (layout2), this should
+work out-of-the-box. If you use custom error-classes you can configure the error-class the script should use.
+
+You also can configure an element which should be considered as offset for the scroll-to-functionality (e.g. a static header).
+```
+$(() => {
+  const forminator = new Forminator({
+    'scrollToOffsetId': 'siteheader',
+    'formErrorClass': 'is-invalid',
+  });
+});
+```
+
+## Usage of error-class removal on forms when user edits fields
+If you use the default configuration of typo3/cms-form with the new default layout (layout2), this should
+work out-of-the-box.
+
+However you can configure the relevant error-classes individually.
+The only important thing for it to work is that each element needs a the wrapping element with the defined error-class.
+
+```
+$(() => {
+  const forminator = new Forminator({
+    'formElementClass': 'form-element',
+    'formErrorClass': 'is-invalid',
+    'formGlobalErrorClass': 'is-invalid',
+  });
+});
 ```
 
 # Features for eliashaeussler/typo3-form-consent
