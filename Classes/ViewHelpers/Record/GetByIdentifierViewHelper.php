@@ -37,7 +37,7 @@ final class GetByIdentifierViewHelper extends AbstractViewHelper
 	public function initializeArguments(): void
 	{
 		parent::initializeArguments();
-        $this->registerArgument('identifier', 'string', 'The identifier to use for loading the record.', true);
+        $this->registerArgument('identifier', 'string', 'The identifier to use for loading the record.', true, '');
     }
 
 
