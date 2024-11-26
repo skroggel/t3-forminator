@@ -56,7 +56,10 @@ final class GetElementValueByIdentifierViewHelper extends AbstractViewHelper
 	) {
 
 		/** @var string $identifier */
-		if ($identifier = $arguments['identifier']) {
+		if (
+            isset($arguments['identifier'])
+            && ($identifier = $arguments['identifier'])
+        ){
 
 			/** @var \TYPO3\CMS\Form\Domain\Runtime\FormRuntime $formRuntime */
 			$formRuntime = $renderingContext
