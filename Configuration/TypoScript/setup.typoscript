@@ -40,6 +40,11 @@ plugin.tx_form {
 		    1727248952 = EXT:forminator/Resources/Private/Templates/
 		}
 	}
+	settings {
+        yamlConfigurations {
+            1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
+        }
+	}
 }
 
 // ====================================================

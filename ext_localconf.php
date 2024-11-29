@@ -40,13 +40,6 @@ call_user_func(
                         1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
                     }
                 }
-            }
-            plugin.tx_form {
-                settings {
-                    yamlConfigurations {
-                        1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.yaml
-                    }
-                }
             }'
         );
 
