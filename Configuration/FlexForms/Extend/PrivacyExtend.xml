@@ -14,6 +14,7 @@
 					<config>
                         <type>group</type>
                         <allowed>pages</allowed>
+                        <internal_type>db</internal_type>
                         <maxitems>1</maxitems>
                         <minitems>0</minitems>
                         <size>1</size>
@@ -26,6 +27,7 @@
                     <config>
                         <type>group</type>
                         <allowed>pages</allowed>
+                        <internal_type>db</internal_type>
                         <maxitems>1</maxitems>
                         <minitems>0</minitems>
                         <size>1</size>

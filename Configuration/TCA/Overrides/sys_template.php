@@ -11,6 +11,12 @@ call_user_func(
 			'Forminator'
 		);
 
-	},
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+            $extensionKey,
+            'Configuration/TypoScript/v10',
+            'Forminator TYPO3 v10'
+        );
+
+    },
 	'forminator'
 );

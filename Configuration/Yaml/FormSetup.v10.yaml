@@ -1,0 +1,232 @@
+imports:
+  - { resource: './Validators/AlwaysFalse.yaml' }
+  - { resource: './Validators/BetterEmailAddress.yaml' }
+  - { resource: './Validators/Phone.yaml' }
+
+  - { resource: './FormElements/ConsentCheckbox.yaml' }
+  - { resource: './FormElements/ConsentContainer.yaml' }
+  # - { resource: './FormElements/Hcaptcha.yaml' }
+  # - { resource: './FormElements/HcaptchaConsent.yaml' }
+  - { resource: './FormElements/MultiSelect.yaml' }
+  # - { resource: './FormElements/Page.yaml' }
+  - { resource: './FormElements/Salutation.yaml' }
+  - { resource: './FormElements/SingleSelect.yaml' }
+  # - { resource: './FormElements/SkipValidation.yaml' }
+  - { resource: './FormElements/TextEmail.yaml' }
+  - { resource: './FormElements/Title.yaml' }
+
+  - { resource: './Finishers/ConfirmationMessage.yaml' }
+  - { resource: './Finishers/EmailToReceiver.yaml' }
+  - { resource: './Finishers/EmailToSender.yaml' }
+
+TYPO3:
+  CMS:
+    Form:
+      persistenceManager:
+        allowedExtensionPaths:
+          1727248952: 'EXT:forminator/Resources/Private/Forms/'
+      prototypes:
+        standard:
+          formEngine:
+            translationFiles:
+              1727248952: 'EXT:forminator/Resources/Private/Language/locallang_be.xlf'
+          formElementsDefinition:
+            Form:
+              renderingOptions:
+                translation:
+                  translationFiles:
+                    1727248952: 'EXT:forminator/Resources/Private/Language/locallang.xlf'
+                templateRootPaths:
+                  1727248952: 'EXT:forminator/Resources/Private/Templates/'
+                  1727248953: 'EXT:forminator/Resources/Private/Extensions/Hcaptcha/Templates/'
+                  1727248954: 'EXT:forminator/Resources/Private/v10/Core/Templates/'
+                  1727248955: 'EXT:forminator/Resources/Private/v10/Templates/'
+                partialRootPaths:
+                  1727248952: 'EXT:forminator/Resources/Private/Partials/'
+                  1727248953: 'EXT:forminator/Resources/Private/Extensions/Hcaptcha/Partials/'
+                  1727248954: 'EXT:forminator/Resources/Private/v10/Core/Partials/'
+                  1727248955: 'EXT:forminator/Resources/Private/v10/Partials/'
+                fluidAdditionalAttributes:
+                  novalidate: 'novalidate'
+                fieldProperties:
+                  errorMsgClassAttribute: invalid-feedback
+                  errorClassAttribute: is-invalid
+                  descriptionClassAttribute: form-text
+                  requiredMarkClassAttribute: required
+                  visuallyHiddenClassAttribute: visually-hidden
+
+            # basic grid configuration
+            GridRow:
+              properties:
+                containerClassAttribute: ~
+                elementClassAttribute: 'form-element form-element-gridrow row'
+                elementErrorClassAttribute: ~
+                gridColumnClassAutoConfiguration:
+                  gridSize: 12
+                  viewPorts:
+                    xs:
+                      classPattern: 'col-12'
+                    sm:
+                      classPattern: 'col-sm-12'
+                    md:
+                      classPattern: 'col-lg-{@numbersOfColumnsToUse}'
+                    lg:
+                      classPattern: 'col-lg-{@numbersOfColumnsToUse}'
+                    xl:
+                      classPattern: 'col-xl-{@numbersOfColumnsToUse}'
+                    xxl:
+                      classPattern: 'col-xxl-{@numbersOfColumnsToUse}'
+
+            # some cleanup
+            DatePicker:
+              properties:
+                containerClassAttribute: 'form-element form-element-datepicker form-inline'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            AdvancedPassword:
+              properties:
+                fieldsetClassAttribute: 'form-element form-element-advancedpassword'
+                containerClassAttribute: 'form-element'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+                confirmationClassAttribute: form-control
+
+            Checkbox:
+              properties:
+                containerClassAttribute: 'form-element form-element-check'
+                containerInnerClassAttribute: 'form-check'
+                elementClassAttribute: form-check-input
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-check-wrapping-label
+                labelTextClassAttribute: form-check-label
+
+            CountrySelect:
+              properties:
+                containerClassAttribute: 'form-element form-element-select'
+                elementClassAttribute: form-select
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            Date:
+              properties:
+                containerClassAttribute: 'form-element form-element-date'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            Email:
+              properties:
+                containerClassAttribute: 'form-element form-element-email'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            Fieldset:
+              properties:
+                elementClassAttribute: 'form-element form-element-fieldset'
+                containerClassAttribute: ~
+                elementErrorClassAttribute: ~
+
+            FileUpload:
+              properties:
+                containerClassAttribute: 'form-element form-element-fileupload'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            Honeypot:
+              properties:
+                containerClassAttribute: form-element
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+
+            ImageUpload:
+              properties:
+                containerClassAttribute: 'form-element form-element-imageupload'
+                elementClassAttribute: 'form-control lightbox'
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            MultiCheckbox:
+              properties:
+                renderFieldset: 1
+                fieldsetClassAttribute: 'form-element form-element-radio'
+                containerClassAttribute: 'form-check'
+                elementClassAttribute: form-check-input
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-check-wrapping-label
+                labelTextClassAttribute: form-check-label
+                legendVisuallyHidden: 0
+
+            MultiSelect:
+              properties:
+                containerClassAttribute: 'form-element form-element-multiselect'
+                elementClassAttribute: 'form-select js-forminator-select2-multiple'
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            Number:
+              properties:
+                containerClassAttribute: 'form-element form-element-number'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            Password:
+              properties:
+                containerClassAttribute: 'form-element form-element-password'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            RadioButton:
+              properties:
+                renderFieldset: 1
+                fieldsetClassAttribute: 'form-element form-element-radio'
+                containerClassAttribute: 'form-check'
+                elementClassAttribute: form-check-input
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-check-wrapping-label
+                labelTextClassAttribute: form-check-label
+                legendVisuallyHidden: 1
+
+            SingleSelect:
+              properties:
+                containerClassAttribute: 'form-element form-element-select'
+                elementClassAttribute: 'form-select js-forminator-select2-single'
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            StaticText:
+              properties:
+                containerClassAttribute: 'form-element form-element-statictext'
+
+            Telephone:
+              properties:
+                containerClassAttribute: 'form-element form-element-phone'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            Text:
+              properties:
+                containerClassAttribute: 'form-element form-element-text'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label
+
+            Textarea:
+              properties:
+                containerClassAttribute: 'form-element form-element-textarea'
+                elementClassAttribute: 'form-control xxlarge'
+                labelClassAttribute: form-label
+
+            Url:
+              properties:
+                containerClassAttribute: 'form-element form-element-url'
+                elementClassAttribute: form-control
+                elementErrorClassAttribute: ~
+                labelClassAttribute: form-label

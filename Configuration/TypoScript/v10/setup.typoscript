@@ -1,0 +1,14 @@
+@import '../setup.typoscript'
+
+
+// ====================================================
+// Add configuration for forms
+//=====================================================
+plugin.tx_form {
+
+	settings {
+        yamlConfigurations {
+            1727248952 = EXT:forminator/Configuration/Yaml/FormSetup.v10.yaml
+        }
+	}
+}
