@@ -1,0 +1,51 @@
+<html
+	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:forminatorV10="http://typo3.org/ns/Madj2k/Forminator/ViewHelpers/v10"
+    xmlns:forminator="http://typo3.org/ns/Madj2k/Forminator/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+	<f:if condition="{text}">
+		<f:for each="{0: 'privacyPolicy', 1: 'termsAndConditions'}" as="config">
+
+			<f:variable
+				name="linkText"
+				value="{formvh:translateElementProperty(element: element, property: '{config}LinkText{type}')}"
+			/>
+
+			<f:variable name="linkPid"
+						value="{element.properties.{config}Pid}"
+			/>
+            <f:comment><!-- check for settings of flexForm --></f:comment>
+            <f:if condition="{forminator:settings(key: '{config}Pid')}">
+                <f:variable name="linkPid"
+                            value="{forminator:settings(key: '{config}Pid')}"
+                />
+            </f:if>
+
+			<f:if condition="{linkPid}">
+				<f:then>
+					<f:variable
+						name="link"
+						value="{linkText -> f:link.page(pageUid: linkPid, target: '_blank', class:'link')}"
+					/>
+				</f:then>
+				<f:else>
+					<f:variable
+						name="link"
+						value="{linkText}"
+					/>
+				</f:else>
+			</f:if>
+			<f:variable
+				name="text"
+				value="{forminatorV10:replace(search: '#{config}#', replace: link, value: text)}"
+			/>
+		</f:for>
+	</f:if>
+
+	<f:if condition="{text}">
+		{text -> f:format.htmlentitiesDecode()}
+	</f:if>
+
+</html>

@@ -30,6 +30,7 @@ class Forminator {
     'scrollToOffsetId': 'siteheader',
     'formElementClass': 'form-element',
     'formErrorClass': 'is-invalid',
+    'formErrorMessageClass': 'invalid-feedback',
     'formGlobalErrorClass': 'is-invalid',
   };
 
@@ -168,11 +169,12 @@ class Forminator {
             form.replaceWith(result);
           }
 
+          self.initAjaxSubmit();
           self.initReloadOnChange();
           self.initSubmitOnChange();
           self.initRemoveErrorOnChange();
 
-          const firstError = form.find('.' + self.config.fieldErrorClass + ':first');
+          const firstError = form.find('.' + self.config.formErrorClass + ':first');
           const scrollToElement = form.find('#' + formScrollToId);
           const scrollOffset = $('#' + self.config.scrollToOffsetId).length
             ? $('#' + self.config.scrollToOffsetId).height()
@@ -187,7 +189,6 @@ class Forminator {
             }
           }
 
-          submitButtons.prop('disabled', false).removeClass('disabled');
           $(document).trigger('madj2k-after-ajax-submit');
         },
       });
@@ -210,7 +211,7 @@ class Forminator {
           .find('.' + self.config.formErrorClass)
           .removeClass(self.config.formErrorClass);
         elementGroup
-          .find('.invalid-feedback')
+          .find('.' + self.config.formErrorMessageClass)
           .remove();
       }
       const errorsLeft = form.find('.' + self.config.formErrorClass);

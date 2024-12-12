@@ -42,7 +42,7 @@ class ResizeEnd {
 
     let self = this;
     $(window).resize(function () {
-      
+
       // needed because if a mobile browser hides/shows the address-bar during scrolling this fires a resize event!
       if ($('body').attr(self.config.scrollingDataAttr) == 0) {
         self.waitForFinalEvent(

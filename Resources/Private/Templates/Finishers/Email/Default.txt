@@ -21,7 +21,7 @@
             <f:then>
                 <f:variable name="sectionHeader">{formvh:translateElementProperty(element: formValue.element, property: 'label')}</f:variable>
                 <f:if condition="{sectionHeader}">
-                    \n*** <formvh:translateElementProperty element="{formValue.element}" property="label" /> *** \n
+                    \n*** status{sectionHeader} *** \n
                 </f:if>
             </f:then>
             <f:else>

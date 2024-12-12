@@ -12,3 +12,8 @@ services:
       -   name: event.listener
           identifier: 'flexParsing'
           event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent
+
+  Madj2k\Forminator\ViewHelpers\HCaptchaViewHelper:
+    public: true
+    arguments:
+      $configurationService: '@Waldhacker\Hcaptcha\Service\ConfigurationService'
