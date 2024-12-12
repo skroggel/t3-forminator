@@ -188,8 +188,8 @@ class Forminator {
               scrollTo(0, form.offset().top - scrollOffset);
             }
           }
-
           $(document).trigger('madj2k-after-ajax-submit');
+          submitButtons.prop('disabled', false).removeClass('disabled');
         },
       });
     });
