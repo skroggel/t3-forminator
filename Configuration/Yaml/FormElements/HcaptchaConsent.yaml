@@ -9,7 +9,7 @@ TYPO3:
                 - identifier: hide-1
                   renderingOptions:
                     enabled: false
-                  condition: 'finisherIdentifier in ["EmailToSender", "EmailToReceiver"]'
+                  condition: 'finisherIdentifier in ["EmailToSender", "EmailToReceiver", "ConfirmationMessage"]'
                 - identifier: hide-2
                   renderingOptions:
                     enabled: false

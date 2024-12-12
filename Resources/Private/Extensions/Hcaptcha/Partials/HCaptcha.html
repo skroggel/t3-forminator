@@ -1,6 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
-      xmlns:hcaptcha="http://typo3.org/ns/Waldhacker/Hcaptcha/ViewHelpers"
+      xmlns:hcaptcha="http://typo3.org/ns/Madj2k/Forminator/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
     <formvh:renderRenderable renderable="{element}">
@@ -11,7 +11,7 @@
             </f:if>
 
             <div class="form-element form-element-captcha">
-                <hcaptcha:forms.hcaptcha />
+                <hcaptcha:hCaptcha />
             </div>
 
             <f:form.hidden

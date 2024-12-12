@@ -145,7 +145,10 @@ Translations:
 
 ## Hcaptcha
 Customized configuration for the use of dreistromland/typo3-hcaptcha and for usage together with the extension eliashaeussler/typo3-form-consent
-The configruation has to be imported separately, because it is optional. Just include this snippet in your configuration:
+With the integrated ViewHelper it is also possible to use dreistromland/typo3-hcaptcha in AJAX-forms.
+
+The configruation has to be imported separately, because it is optional.
+Just include this snippet in your configuration:
 ```
 imports:
   - { resource: "EXT:forminator/Configuration/Yaml/FormElements/Hcaptcha.yaml" } # hcaptcha
