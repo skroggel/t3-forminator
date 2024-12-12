@@ -1,7 +1,7 @@
 /*!
  * Author: Steffen Kroggel <developer@steffenkroggel.de>
- * Last updated: 16.11.2024
- * v1.0.0
+ * Last updated: 17.12.2024
+ * v1.0.1
  *
  * This is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -169,7 +169,7 @@ class Forminator {
             form.replaceWith(result);
           }
 
-          self.initAjaxSubmit();
+          // self.initAjaxSubmit(); // may lead to endless loops!!!
           self.initReloadOnChange();
           self.initSubmitOnChange();
           self.initRemoveErrorOnChange();
@@ -189,7 +189,6 @@ class Forminator {
             }
           }
           $(document).trigger('madj2k-after-ajax-submit');
-          submitButtons.prop('disabled', false).removeClass('disabled');
         },
       });
     });
