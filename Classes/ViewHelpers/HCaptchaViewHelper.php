@@ -33,16 +33,17 @@ if (class_exists(\Waldhacker\Hcaptcha\Service\ConfigurationService::class)) {
 
         protected $escapeOutput = false;
 
+
         /**
-         * @var \Waldhacker\Hcaptcha\Service\ConfigurationService
+         * @var \Waldhacker\Hcaptcha\Service\ConfigurationService|null
          */
-        private ConfigurationService $configurationService;
+        private ?ConfigurationService $configurationService = null;
 
 
         /**
          * @param \Waldhacker\Hcaptcha\Service\ConfigurationService $configurationService
          */
-        public function __construct(ConfigurationService $configurationService)
+        public function injectConfigurationService(ConfigurationService $configurationService): void
         {
             $this->configurationService = $configurationService;
         }
@@ -52,7 +53,6 @@ if (class_exists(\Waldhacker\Hcaptcha\Service\ConfigurationService::class)) {
          * Renders the captcha also in AJAX-context
          *
          * @return string
-         * @throws \Waldhacker\Hcaptcha\Exception\MissingKeyException
          */
         public function render(): string
         {
