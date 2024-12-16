@@ -33,16 +33,17 @@ if (class_exists(\Waldhacker\Hcaptcha\Service\ConfigurationService::class)) {
 
         protected $escapeOutput = false;
 
+        
         /**
          * @var \Waldhacker\Hcaptcha\Service\ConfigurationService
          */
-        private ConfigurationService $configurationService;
+        private ?ConfigurationService $configurationService = null;
 
-
+        
         /**
          * @param \Waldhacker\Hcaptcha\Service\ConfigurationService $configurationService
          */
-        public function __construct(ConfigurationService $configurationService)
+        public function injectConfigurationService(ConfigurationService $configurationService)
         {
             $this->configurationService = $configurationService;
         }
