@@ -9,7 +9,7 @@ imports:
   # - { resource: './FormElements/HcaptchaConsent.yaml' }
   - { resource: './FormElements/MultiSelect.yaml' }
   # - { resource: './FormElements/Page.yaml' }
-  - { resource: './FormElements/Salutation.yaml' }
+  # - { resource: './FormElements/Salutation.yaml' }
   - { resource: './FormElements/SingleSelect.yaml' }
   # - { resource: './FormElements/SkipValidation.yaml' }
   - { resource: './FormElements/TextEmail.yaml' }
