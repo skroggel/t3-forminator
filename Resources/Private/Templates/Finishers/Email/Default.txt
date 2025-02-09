@@ -5,11 +5,10 @@
     data-namespace-typo3-fluid="true"
 >
 <f:layout name="SystemEmail" />
-<f:section name="Title">{title}</f:section>
+<f:section name="Title"><forminator:email.plaintextLineBreaks>{title}\n</forminator:email.plaintextLineBreaks></f:section>
 <f:section name="Main"><forminator:email.plaintextLineBreaks>
 
     <f:if condition="{message}">
-        \n
         {message -> f:format.stripTags()}
         \n\n
         --------------------------------------------------
@@ -17,45 +16,50 @@
     </f:if>
 
     <formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue">
-        <f:if condition="{formValue.isSection}">
-            <f:then>
-                <f:variable name="sectionHeader">{formvh:translateElementProperty(element: formValue.element, property: 'label')}</f:variable>
-                <f:if condition="{sectionHeader}">
-                    \n*** status{sectionHeader} *** \n
-                </f:if>
-            </f:then>
-            <f:else>
-                <f:variable name="label" value="{formvh:translateElementProperty(element: formValue.element, property: 'label')}" />
-                <f:if condition="{formValue.element.type} == 'ConsentCheckbox'">
-                    <f:variable name="label"><f:render
-                        partial="ConsentCheckbox/Label.html"
-                        arguments="{element: formValue.element,
-                        type: 'Label',
-                        text: label}" />
-                    </f:variable>
-                </f:if>
-
-                {label -> f:format.stripTags()}: \n
-
-                <f:if condition="{formValue.isMultiValue}">
+        <f:switch expression="{formValue.element.type}">
+            <f:case value="StaticText"></f:case>
+            <f:defaultCase>
+                <f:if condition="{formValue.isSection}">
                     <f:then>
-                        <f:for each="{formValue.processedValue}" as="singleValue">
-                            - {singleValue} \n
-                        </f:for>
+                        <f:variable name="sectionHeader">{formvh:translateElementProperty(element: formValue.element, property: 'label')}</f:variable>
+                        <f:if condition="{sectionHeader}">
+                            \n*** status{sectionHeader} *** \n
+                        </f:if>
                     </f:then>
                     <f:else>
-                        <f:if condition="{formValue.processedValue}">
+                        <f:variable name="label" value="{formvh:translateElementProperty(element: formValue.element, property: 'label')}" />
+                        <f:if condition="{formValue.element.type} == 'ConsentCheckbox'">
+                            <f:variable name="label"><f:render
+                                partial="ConsentCheckbox/Label.html"
+                                arguments="{element: formValue.element,
+                                type: 'Label',
+                                text: label}" />
+                            </f:variable>
+                        </f:if>
+
+                        {label -> f:format.stripTags()}: \n
+
+                        <f:if condition="{formValue.isMultiValue}">
                             <f:then>
-                                {formValue.processedValue -> f:format.raw()} \n\n
+                                <f:for each="{formValue.processedValue}" as="singleValue">
+                                    - {singleValue} \n
+                                </f:for>
                             </f:then>
                             <f:else>
-                                - \n\n
+                                <f:if condition="{formValue.processedValue}">
+                                    <f:then>
+                                        {formValue.processedValue -> f:format.raw()} \n\n
+                                    </f:then>
+                                    <f:else>
+                                        - \n\n
+                                    </f:else>
+                                </f:if>
                             </f:else>
                         </f:if>
                     </f:else>
                 </f:if>
-            </f:else>
-        </f:if>
+            </f:defaultCase>
+        </f:switch>
     </formvh:renderAllFormValues>
 </forminator:email.plaintextLineBreaks></f:section>
 </html>

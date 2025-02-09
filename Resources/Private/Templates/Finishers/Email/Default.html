@@ -15,51 +15,56 @@
         <table class="content-table">
 
             <formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue">
-                <tr>
-                    <f:if condition="{formValue.isSection}">
-                        <f:then>
-                            <f:variable name="sectionHeader">{formvh:translateElementProperty(element: formValue.element, property: 'label')}</f:variable>
-                            <f:if condition="{sectionHeader}">
-                                <td colspan="2"><b>{sectionHeader}</b></td>
-                            </f:if>
-                        </f:then>
-                        <f:else>
-                            <td valign="top" align="left" style="width:40%" width="40%">
+                <f:switch expression="{formValue.element.type}">
+                    <f:case value="StaticText"></f:case>
+                    <f:defaultCase>
+                        <tr>
+                            <f:if condition="{formValue.isSection}">
+                                <f:then>
+                                    <f:variable name="sectionHeader">{formvh:translateElementProperty(element: formValue.element, property: 'label')}</f:variable>
+                                    <f:if condition="{sectionHeader}">
+                                        <td colspan="2"><b>{sectionHeader}</b></td>
+                                    </f:if>
+                                </f:then>
+                                <f:else>
+                                    <td valign="top" align="left" style="width:40%" width="40%">
 
-                                <f:variable name="label" value="{formvh:translateElementProperty(element: formValue.element, property: 'label')}" />
-                                <f:if condition="{formValue.element.type} == 'ConsentCheckbox'">
-                                    <f:variable name="label"><f:render
-                                        partial="ConsentCheckbox/Label"
-                                        arguments="{element: formValue.element,
+                                        <f:variable name="label" value="{formvh:translateElementProperty(element: formValue.element, property: 'label')}" />
+                                        <f:if condition="{formValue.element.type} == 'ConsentCheckbox'">
+                                            <f:variable name="label"><f:render
+                                                partial="ConsentCheckbox/Label"
+                                                arguments="{element: formValue.element,
                                         type: 'Label',
                                         text: label}" />
-                                    </f:variable>
-                                </f:if>
+                                            </f:variable>
+                                        </f:if>
 
-                                {label -> f:format.raw()}:
-                            </td>
-                            <td valign="top" align="left">
-                                <f:if condition="{formValue.value}">
-                                    <f:then>
-                                        <f:if condition="{formValue.isMultiValue}">
+                                        {label -> f:format.raw()}:
+                                    </td>
+                                    <td valign="top" align="left">
+                                        <f:if condition="{formValue.value}">
                                             <f:then>
-                                                <f:for each="{formValue.processedValue}" as="value">
-                                                    {value}<br>
-                                                </f:for>
+                                                <f:if condition="{formValue.isMultiValue}">
+                                                    <f:then>
+                                                        <f:for each="{formValue.processedValue}" as="value">
+                                                            {value}<br>
+                                                        </f:for>
+                                                    </f:then>
+                                                    <f:else>
+                                                        <f:format.nl2br>{formValue.processedValue}</f:format.nl2br>
+                                                    </f:else>
+                                                </f:if>
                                             </f:then>
                                             <f:else>
-                                                <f:format.nl2br>{formValue.processedValue}</f:format.nl2br>
+                                                -
                                             </f:else>
                                         </f:if>
-                                    </f:then>
-                                    <f:else>
-                                        -
-                                    </f:else>
-                                </f:if>
-                            </td>
-                        </f:else>
-                    </f:if>
-                </tr>
+                                    </td>
+                                </f:else>
+                            </f:if>
+                        </tr>
+                    </f:defaultCase>
+                </f:switch>
             </formvh:renderAllFormValues>
         </table>
     </f:section>

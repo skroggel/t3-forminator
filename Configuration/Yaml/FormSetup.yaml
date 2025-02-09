@@ -168,6 +168,7 @@ TYPO3:
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     renderFieldset: 1
+                    groupClassAttribute: 'form-group'
                     fieldsetClassAttribute: 'form-element form-element-radio'
                     containerClassAttribute: 'form-check'
 
