@@ -177,8 +177,9 @@ class Forminator {
           const firstError = form.find('.' + self.config.formErrorClass + ':first');
           const scrollToElement = form.find('#' + formScrollToId);
           const scrollOffset = $('#' + self.config.scrollToOffsetId).length
-            ? $('#' + self.config.scrollToOffsetId).height()
+            ? $('#' + self.config.scrollToOffsetId).outerHeight()
             : 0;
+
           if (noScrollTo !== 1) {
             if (firstError.length) {
               scrollTo(0, firstError.offset().top - scrollOffset);
