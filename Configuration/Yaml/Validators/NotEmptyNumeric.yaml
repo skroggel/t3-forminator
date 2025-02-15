@@ -1,0 +1,8 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          validatorsDefinition:
+            NotEmptyNumeric:
+              implementationClassName: Madj2k\Forminator\Mvc\Validation\NotEmptyNumeric

@@ -1,6 +1,7 @@
 imports:
   - { resource: './Validators/AlwaysFalse.yaml' }
   - { resource: './Validators/BetterEmailAddress.yaml' }
+  - { resource: './Validators/NotEmptyNumeric.yaml' }
   - { resource: './Validators/Phone.yaml' }
 
   - { resource: './FormElements/ConsentCheckbox.yaml' }
@@ -12,6 +13,7 @@ imports:
   #- { resource: './FormElements/Salutation.yaml' }
   - { resource: './FormElements/SingleSelect.yaml' }
   - { resource: './FormElements/SkipValidation.yaml' }
+  - { resource: './FormElements/Slide.yaml' }
   - { resource: './FormElements/TextEmail.yaml' }
   - { resource: './FormElements/Title.yaml' }
 
