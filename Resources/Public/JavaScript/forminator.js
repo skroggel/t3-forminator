@@ -222,11 +222,11 @@ class Forminator {
       }
     }
 
-    $(document).on('keydown', 'form textarea, form input:not([type="checkbox"]):not([type="radio"])', function (e) {
+    $(document).on('keydown', 'form textarea, form input:not([type="checkbox"]):not([type="radio"]):not([type="range"])', function (e) {
       removeErrorCssClass(e.target);
     });
 
-    $(document).on('change', 'form select, form input[type="radio"], form input[type="checkbox"]', function (e) {
+    $(document).on('change', 'form select, form input[type="checkbox"], form input[type="radio"], form input[type="range"]', function (e) {
       removeErrorCssClass(e.target);
     });
   }

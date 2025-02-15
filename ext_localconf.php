@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -16,6 +15,9 @@ call_user_func(
         if ($version->getMajorVersion() >= 12) {
             $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Form\Domain\Finishers\FinisherContext::class] = [
                 'className' => \Madj2k\Forminator\Domain\Finishers\FinisherContext::class
+            ];
+            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement::class] = [
+                'className' => \Madj2k\Forminator\Domain\Model\FormElements\GenericFormElement::class
             ];
         }
 
