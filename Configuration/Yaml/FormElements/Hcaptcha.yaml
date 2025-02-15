@@ -7,3 +7,7 @@ TYPO3:
             Hcaptcha:
               renderingOptions:
                 templateName: 'HCaptcha'
+              properties:
+                  containerClassAttribute: 'form-element form-element-hcaptcha hcaptcha'
+                  elementClassAttribute: 'form-hcaptcha'
+                  elementErrorClassAttribute: error
