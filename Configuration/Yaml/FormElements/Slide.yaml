@@ -1,0 +1,31 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            Slide:
+              __inheritances:
+                10: "TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.Checkbox"
+              renderingOptions:
+                templateName: Slide
+              variants:
+                - identifier: template-variant
+                  condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
+                  properties:
+                    containerClassAttribute: 'form-element form-element-slide'
+                    containerInnerClassAttribute: 'form-slide'
+                    elementClassAttribute: 'form-slide-input'
+                    elementErrorClassAttribute: ~
+                    labelClassAttribute: 'form-label'
+                    labelTextClassAttribute: 'form-slide-value'
+              properties:
+                containerClassAttribute: 'form-element form-element-slide'
+                containerInnerClassAttribute: 'form-slide'
+                elementClassAttribute: 'form-slide-input'
+                elementErrorClassAttribute: ~
+                labelClassAttribute: 'form-label'
+                labelTextClassAttribute: 'form-slide-value'
+                min: 0
+                max: 5
+                step: 1

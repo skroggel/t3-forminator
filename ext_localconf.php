@@ -16,6 +16,9 @@ call_user_func(
             $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Form\Domain\Finishers\FinisherContext::class] = [
                 'className' => \Madj2k\Forminator\Domain\Finishers\FinisherContext::class
             ];
+            $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement::class] = [
+                'className' => \Madj2k\Forminator\Domain\Model\FormElements\GenericFormElement::class
+            ];
         }
 
         //=================================================================
