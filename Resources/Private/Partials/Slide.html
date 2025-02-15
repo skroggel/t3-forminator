@@ -15,8 +15,10 @@
         <f:render partial="Field/Field" arguments="{element: element, doNotShowLabel: 0}" contentAs="elementContent">
             <div class="{element.properties.containerInnerClassAttribute}">
                 <formvh:renderFormValue as="formValue" renderable="{element}">
-                    <f:variable name="value" value="-" />
+                    <f:variable name="dislayValue" value="-" />
+                    <f:variable name="value" value="0" />
                     <f:if condition="{formValue.value}">
+                        <f:variable name="dislayValue" value="{formValue.value}" />
                         <f:variable name="value" value="{formValue.value}" />
                     </f:if>
 
@@ -32,12 +34,12 @@
                             min="{element.properties.min}"
                             max="{element.properties.max}"
                             step="{element.properties.step}"
-                            value="0"
-                            title="{value}"
+                            value="{value}"
+                            title="{dislayValue}"
                             oninput="let value = '-'; if(this.value > 0) { value = this.value; } this.setAttribute('title', value); document.getElementById('{element.uniqueIdentifier}-label').innerHTML = value;"
                         />
                     </span>
-                    <span id="{element.uniqueIdentifier}-label" class="{element.properties.labelTextClassAttribute}"><span>{value}</span></span>
+                    <span id="{element.uniqueIdentifier}-label" class="{element.properties.labelTextClassAttribute}"><span>{dislayValue}</span></span>
                 </formvh:renderFormValue>
             </div>
         </f:render>
