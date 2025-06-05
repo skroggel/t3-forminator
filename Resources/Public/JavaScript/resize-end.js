@@ -1,20 +1,23 @@
 /*!
  * Author: Steffen Kroggel <developer@steffenkroggel.de>
- * Last updated: 16.11.2024
- * v1.0.0
+ * Last updated: 03.06.2025
+ * v1.1.0 – Vanilla JS Port
  *
  * This is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
  * of the License, or any later version.
- */
-
-/*
- * Example for initialization:
  *
- * $(() => {
- *  const resizeEnd = new ResizeEnd();
+ * Usage:
+ * document.addEventListener('madj2k-resize-end', () => {
+ *  console.log('Resize-End fired');
+ * });
+ *
+ * Init:
+ * document.addEventListener('DOMContentLoaded', () => {
+ *  const resizeEnd = new ResizeEnd(); // Initialisiert bei DOM ready
  * });
  */
+
 class ResizeEnd {
 
   config = {
@@ -27,66 +30,57 @@ class ResizeEnd {
 
   /**
    * Constructor
-   * @param config
+   * @param {Object} config - Optional config overrides
    */
-  constructor(config) {
-    this.config = {...this.config, ...config}
+  constructor(config = {}) {
+    this.config = { ...this.config, ...config };
     this.initScrollingDetection();
     this.initResizeEndEvent();
   }
 
   /**
-   * Init resizeEnd-Event
+   * Init resizeEnd custom event
    */
   initResizeEndEvent() {
+    window.addEventListener('resize', () => {
+      const body = document.body;
 
-    let self = this;
-    $(window).resize(function () {
-      // needed because if a mobile browser hides/shows the address-bar during scrolling this fires a resize event!
-      if(
-        (! $('body').attr(self.config.scrollingDataAttr))
-        || ($('body').attr(self.config.scrollingDataAttr) == 0)
+      if (
+        !body.hasAttribute(this.config.scrollingDataAttr) ||
+        body.getAttribute(this.config.scrollingDataAttr) === '0'
       ) {
-
-        self.waitForFinalEvent(
-          function () {
-            // do not fire event if keyboard is displayed on mobile!
-            if ($(document.activeElement).is('input') === false) {
-              $(document).trigger('madj2k-resize-end');
-            }
-          },
-          self.config.resizeEndTimeout,
-          'resize'
-        );
+        this.waitForFinalEvent(() => {
+          // Skip if input is focused (e.g. keyboard open on mobile)
+          const active = document.activeElement;
+          if (!(active && active.tagName === 'INPUT')) {
+            const event = new CustomEvent('madj2k-resize-end');
+            document.dispatchEvent(event);
+          }
+        }, this.config.resizeEndTimeout, 'resize');
       }
     });
   }
 
   /**
-   * Check if scrolling is in place.
-   * This is to prevent the resizeEvent on mobile when the address-bar hides/shows automatically
+   * Init scrolling detection
    */
   initScrollingDetection() {
+    const handler = () => {
+      document.body.setAttribute(this.config.scrollingDataAttr, '1');
 
-    // touchmove is fired on iPad when the scrolling starts, scroll is fired when scrolling ends
-    let self = this;
-    $(window).on('scroll touchmove', function () {
-      $('body').attr(self.config.scrollingDataAttr, 1);
+      this.waitForFinalEvent(() => {
+        document.body.setAttribute(this.config.scrollingDataAttr, '0');
+      }, this.config.scrollingEndTimeout, 'scrolling');
+    };
 
-      self.waitForFinalEvent(
-        function () {
-          $('body').attr(self.config.scrollingDataAttr, 0);
-        },
-        self.config.scrollingEndTimeout,
-        "scrolling"
-      );
-    });
+    window.addEventListener('scroll', handler, { passive: true });
+    window.addEventListener('touchmove', handler, { passive: true });
   }
 
-  waitForFinalEvent (callback, ms, uniqueId) {
-    if (!uniqueId) {
-      uniqueId = "Don't call this twice without a uniqueId";
-    }
+  /**
+   * Debounced final event dispatcher
+   */
+  waitForFinalEvent(callback, ms, uniqueId = "default") {
     if (this.finalEventTimers[uniqueId]) {
       clearTimeout(this.finalEventTimers[uniqueId]);
     }
