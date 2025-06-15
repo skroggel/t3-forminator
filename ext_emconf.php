@@ -20,17 +20,17 @@ $EM_CONF[$_EXTKEY] = [
 	'internal' => '',
 	'uploadfolder' => '0',
 	'clearCacheOnLoad' => 0,
-	'versiong' => '12.4.31',
+	'versiong' => '13.4.0',
 	'constraints' => [
 		'depends' => [
-            'typo3' => '10.4.0-12.4.99',
+            'typo3' => '10.4.0-13.4.99',
         ],
 		'conflicts' => [
 		],
 		'suggests' => [
             'form_consent' => '2.2.0-2.2.99',
-            'hcaptcha' => '2.2.0-2.2.99',
-            'typoscript_rendering' =>  '12.4.0-12.4.99',
+            'hcaptcha' => '2.2.0-2.3.99',
+            'typoscript_rendering' =>  '12.4.0-13.4.99',
         ],
 	],
 ];

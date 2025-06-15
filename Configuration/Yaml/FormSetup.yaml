@@ -10,7 +10,7 @@ imports:
   # - { resource: './FormElements/HcaptchaConsent.yaml' }
   - { resource: './FormElements/MultiSelect.yaml' }
   - { resource: './FormElements/Page.yaml' }
-  #- { resource: './FormElements/Salutation.yaml' }
+  - { resource: './FormElements/Salutation.yaml' }
   - { resource: './FormElements/SingleSelect.yaml' }
   - { resource: './FormElements/SkipValidation.yaml' }
   - { resource: './FormElements/Slide.yaml' }
@@ -70,14 +70,16 @@ TYPO3:
             # some cleanup
             DatePicker:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-datepicker form-inline'
 
             AdvancedPassword:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     fieldsetClassAttribute: 'form-element form-element-advancedpassword'
@@ -85,57 +87,66 @@ TYPO3:
 
             Checkbox:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-check'
                     containerInnerClassAttribute: 'form-check'
+                    labelTextClassAttribute: 'form-check-label'
 
             CountrySelect:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-select'
 
             Date:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-date'
 
             Email:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-email'
 
             Fieldset:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     elementClassAttribute: 'form-element form-element-fieldset'
 
             FileUpload:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-fileupload'
 
             ImageUpload:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-imageupload'
 
             MultiCheckbox:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     renderFieldset: 1
@@ -144,7 +155,8 @@ TYPO3:
 
             MultiSelect:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-multiselect'
@@ -152,31 +164,36 @@ TYPO3:
 
             Number:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-number'
 
             Password:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-password'
 
             RadioButton:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     renderFieldset: 1
                     groupClassAttribute: 'form-group'
                     fieldsetClassAttribute: 'form-element form-element-radio'
                     containerClassAttribute: 'form-check'
+                    labelTextClassAttribute: 'form-check-label'
 
             SingleSelect:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-select'
@@ -184,28 +201,32 @@ TYPO3:
 
             StaticText:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-statictext'
 
             Telephone:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-phone'
 
             Text:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-text'
 
             Textarea:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-textarea'
@@ -213,7 +234,8 @@ TYPO3:
 
             Url:
               variants:
-                - identifier: template-variant
+                forminator:
+                  identifier: template-variant-forminator
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-url'
