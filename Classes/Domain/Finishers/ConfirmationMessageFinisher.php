@@ -15,6 +15,9 @@ namespace Madj2k\Forminator\Domain\Finishers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 /**
@@ -47,15 +50,26 @@ class ConfirmationMessageFinisher extends \TYPO3\CMS\Form\Domain\Finishers\Confi
 	 */
 	protected function executeInternal(): string
 	{
-		$standaloneView = $this->initializeStandaloneView(
-			$this->finisherContext->getFormRuntime()
-		);
+        $version = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($version->getMajorVersion() < 13) {
+            $standaloneView = $this->initializeStandaloneView(
+                $this->finisherContext->getFormRuntime()
+            );
+
+            if ($assignOptions = $this->parseOption('assignOptions')) {
+                foreach ($assignOptions as $optionName) {
+                    $standaloneView->assign($optionName,$this->parseOption($optionName));
+                }
+            }
+            return $standaloneView->render();
+        }
 
         if ($assignOptions = $this->parseOption('assignOptions')) {
             foreach ($assignOptions as $optionName) {
-                $standaloneView->assign($optionName,$this->parseOption($optionName));
+                $this->options['variables'][$optionName] = $this->parseOption($optionName);
             }
         }
-		return $standaloneView->render();
+
+        return parent::executeInternal();
 	}
 }

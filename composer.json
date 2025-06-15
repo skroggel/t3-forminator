@@ -23,7 +23,7 @@
 	},
 	"suggest": {
 		"eliashaeussler/typo3-form-consent" : "^2.2.0",
-		"dreistromland/typo3-hcaptcha": "^2.2.0",
+		"dreistromland/typo3-hcaptcha": "^2.2.0 || ^2.3.0 ",
 		"helhum/typoscript-rendering": "^12.4.0"
 	},
     "autoload": {

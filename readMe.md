@@ -591,23 +591,23 @@ renderables:
                 type: SkipValidation
                 identifier: skip-validation
 
-                options:
-                    identifier: options
-                    type: SingleSelect
-                    properties:
-                        options:
-                           option-1: 'Option 1'
-                           option-1: 'Option 2'
-                        elementClassAttribute: "js-forminator-reload-on-change"
+            options:
+                identifier: options
+                type: SingleSelect
+                properties:
+                    options:
+                       option-1: 'Option 1'
+                       option-1: 'Option 2'
+                    elementClassAttribute: "js-forminator-reload-on-change"
 
-                option-details:
-                    identifier: option-details
-                    type: Text
-                    variants:
-                        -   identifier: validation-option-details
-                            condition: 'traverse(formValues, "options") != "option-1"'
-                            validators:
-                                -   identifier: NotEmpty
+            option-details:
+                identifier: option-details
+                type: Text
+                variants:
+                    -   identifier: validation-option-details
+                        condition: 'traverse(formValues, "options") != "option-1"'
+                        validators:
+                            -   identifier: NotEmpty
 ```
 
 ## Usage of Ajax-Submit for forms
