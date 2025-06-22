@@ -34,15 +34,12 @@ class Forminator {
     'formGlobalErrorClass': 'is-invalid',
   };
 
-  resizeEnd = null;
-
   /**
    * Constructor
    * @param config
    */
   constructor(config) {
     this.config = {...this.config, ...config}
-    this.resizeEnd = new ResizeEnd();
 
     this.initSubmitOnChange();
     this.initReloadOnChange();
@@ -86,7 +83,7 @@ class Forminator {
   initSelect2Resize() {
 
     let self = this;
-    $(document).on('madj2k-resize-end', function (e) {
+    $(document).on('madj2k-better-resize-event', function (e) {
       $('.' + self.config.multiSelectInitClass).select2('destroy');
       $('.' + self.config.singleSelectInitClass).select2('destroy');
       self.initSelect2();

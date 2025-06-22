@@ -8,7 +8,7 @@ This extension comes with several additional validators, finishers, formElements
 * removes the annoying utility-classes (mb-3, mb-2) of the new default layout (layout2) of typo3/cms-form
 * several JS functions for forms (reloadOnChange, submitOnChange, AJAX-submit, removal of error classes when user edits fields,...)
 * JS-init for select2 elements
-* Resize-End-Event for handling the resize event only once on the end
+* Better-Resize-Event for handling the resize event only once on the end and smoothly on mobile devices
 
 # Installation
 Simply install the extension and integrate the TypoScript of the extension into the root page of the website.
@@ -458,35 +458,34 @@ Here an rudimentary example in SASS as prove of concept:
 ```
 
 # JS-Features
-## resize-end.js
+## madj2k-better-resize-event.js
 In some cases, you need to be able to react to the window's resize event. Unfortunately, however, the resize event is not only triggered at the end of the
 resizing of the browser window, but every time the size is changed in between. This can lead to an overhead if the event is handled every
-the event every time. With the ResizeEnd module, a final event is only triggered when the browser window has been resized.
+the event every time. With the JS-module, a final event is only triggered when the browser window has been resized.
 
 The script also considers edge-cases such as showing the software-keyboard and showing / hiding the navigation bar on mobile devices
 (both trigger a resize event).
 
 ### Integration
-**Important: The script requires jQuery.**
 Integrate the JS file into the page.
 ```
 page {
     includeJSFooterlibs {
-        forminatorResizeEnd = EXT:forminator/Resources/Public/JavaScript/resize-end.js
+        forminatorBetterResizeEvent = EXT:forminator/Resources/Public/JavaScript/resize-end.js
     }
 }
 ```
-Then instantiate the resizeEnd-module:
+Then instantiate the Madj2kBetterResizeEvent-module:
 ```
-$(() => {
-  const resizeEnd = new ResizeEnd();
+document.addEventListener('DOMContentLoaded', () => {
+  const resizeEnd = new Madj2kBetterResizeEvent();
 });
 ```
 
 ### Usage
 ```
-$(document).on('madj2k-resize-end', function (e) {
-  // triggered on resize-end
+document.addEventListener('madj2k-better-resize-event', () => {
+  console.log('Resize fired');
 });
 ```
 
