@@ -15,6 +15,11 @@ namespace Madj2k\Forminator\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use TYPO3\CMS\Core\Site\SiteFinder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Form\ViewHelpers\RenderRenderableViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use Waldhacker\Hcaptcha\Service\ConfigurationService;
@@ -68,6 +73,27 @@ if (class_exists(\Waldhacker\Hcaptcha\Service\ConfigurationService::class)) {
                 }
             }
 
+            $languageCode = '';
+            try {
+                /** @var \Psr\Http\Message\ServerRequestInterface $request */
+                $request = $this->renderingContext->getRequest();
+
+                /** @var \TYPO3\CMS\Core\Site\Entity\SiteLanguage $language */
+                $language = $request->getAttribute('language');
+
+                // depending on version
+                $versionUtility = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+                $currentVersion = (int)$versionUtility->getMajorVersion();
+                if ($currentVersion <= 12) {
+                    $languageCode = $language->getTwoLetterIsoCode();
+                } else {
+                    $languageCode = $language->getLocale()->getLanguageCode(); // v13+
+                }
+
+            } catch (\Exception $e) {
+                // do nothing
+            }
+
             $hash = md5(microtime());
             $containerId = 'hcaptcha-container' . $hash;
             $functionId = 'hcaptchaFunction' . $hash;
@@ -75,7 +101,7 @@ if (class_exists(\Waldhacker\Hcaptcha\Service\ConfigurationService::class)) {
             // ECMA 6 is not working with hCaptcha callback!
             return '<div id="' . $containerId . '" class="captcha"></div>'.
                 '<script
-                  src="https://js.hcaptcha.com/1/api.js?onload=' . $functionId  . '&render=explicit"
+                  src="https://js.hcaptcha.com/1/api.js?onload=' . $functionId  . '&render=explicit&hl=' . $languageCode .'"
                   async
                   defer
                 ></script>' .
