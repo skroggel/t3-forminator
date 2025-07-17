@@ -64,10 +64,18 @@ abstract class AbstractViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abst
             ->select($field)
             ->from($table);
 
+        // depending on version
+        $versionUtility = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
+        $currentVersion = (int)$versionUtility->getMajorVersion();
+        if ($currentVersion <= 12) {
+            $parameterType = \PDO::PARAM_INT;
+        } else {
+            $parameterType = \Doctrine\DBAL\ParameterType::INTEGER; // v13+
+        }
         $statement->where(
             $queryBuilder->expr()->eq(
                 $table. '.uid',
-                $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter($uid, $parameterType)
             ),
         );
 
