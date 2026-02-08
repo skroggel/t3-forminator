@@ -142,6 +142,7 @@ TYPO3:
                   condition: 'getRootFormProperty("renderingOptions.templateVariant") == "version2"'
                   properties:
                     containerClassAttribute: 'form-element form-element-imageupload'
+                    elementClassAttribute: 'form-control'
 
             MultiCheckbox:
               variants:

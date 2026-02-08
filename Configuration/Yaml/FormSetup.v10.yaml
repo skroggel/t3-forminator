@@ -148,7 +148,7 @@ TYPO3:
             ImageUpload:
               properties:
                 containerClassAttribute: 'form-element form-element-imageupload'
-                elementClassAttribute: 'form-control lightbox'
+                elementClassAttribute: 'form-control'
                 elementErrorClassAttribute: ~
                 labelClassAttribute: form-label
 
