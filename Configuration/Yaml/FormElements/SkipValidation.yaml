@@ -13,3 +13,7 @@ TYPO3:
                   condition: 'traverse(formValues, "skip-validation") == 1'
                   validators:
                     - identifier: AlwaysFalse
+                - identifier: hide-1
+                  renderingOptions:
+                    enabled: false
+                  condition: 'finisherIdentifier in ["EmailToSender", "EmailToReceiver", "ConfirmationMessage"]'

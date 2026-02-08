@@ -2,15 +2,19 @@
 	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
 	data-namespace-typo3-fluid="true">
 
-	<div class="container" id="{form.identifier}">
-        <f:if condition="{header}">
-            <h3>
-                {header -> f:format.htmlentitiesDecode()}
-            </h3>
-        </f:if>
+	<div class="form-feedback" id="{form.identifier}">
 
-        <f:if condition="{message}">
-            {message -> f:format.html()}
+        <f:if condition="{header} || {message}">
+            <div class="alerts" role="alert">
+                <div class="alert alert-success">
+                    <f:if condition="{header}">
+                        <h3 class="h3 headline">
+                            {header -> f:format.htmlentitiesDecode()}
+                        </h3>
+                    </f:if>
+                    {message -> f:format.html()}
+                </div>
+            </div>
         </f:if>
 
         <f:if condition="{link} && {linkText}">

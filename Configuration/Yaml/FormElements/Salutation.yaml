@@ -1,0 +1,17 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            Salutation:
+              __inheritances:
+                10: "TYPO3.CMS.Form.prototypes.standard.formElementsDefinition.SingleSelect"
+              renderingOptions:
+                templateName: SingleSelect
+              properties:
+                prependOptionLabel: "Please select"
+                options:
+                  mrs: ""
+                  mr: ""
+                  mx: ""

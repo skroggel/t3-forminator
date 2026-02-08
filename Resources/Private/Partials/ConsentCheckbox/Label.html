@@ -27,7 +27,7 @@
 				<f:then>
 					<f:variable
 						name="link"
-						value="{linkText -> f:link.page(pageUid: linkPid, target: '_blank', class:'link')}"
+						value="{linkText -> f:link.page(pageUid: linkPid, absolute: 1, target: '_blank', class:'link')}"
 					/>
 				</f:then>
 				<f:else>
